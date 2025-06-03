@@ -3,229 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oferta Imperdível: Livro Anatomia para Colorir!</title>
+    <title>Destrava Prova - Anatomia para Colorir</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* bg-slate-900 */
+            color: #CBD5E1; /* text-slate-300 */
+            scroll-behavior: smooth;
+            padding-top: 50px; /* Espaço para o temporizador fixo */
         }
-        .timer-banner {
+        .text-highlight {
+            color: #FACC15; /* text-yellow-400 */
+            font-weight: 600;
+        }
+        .text-price-final-section {
+            color: #22D3EE; /* text-cyan-400 */
+            font-weight: 700;
+        }
+        .btn-buy-v9 {
+            background-color: #F59E0B; /* bg-amber-500 */
+            color: #422006; 
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px 0 rgba(245, 158, 11, 0.3);
+        }
+        .btn-buy-v9:hover {
+            background-color: #D97706; /* bg-amber-600 */
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px 0 rgba(245, 158, 11, 0.5);
+        }
+        .feature-card-v9 {
+            background-color: #1E293B; /* bg-slate-800 */
+            border: 1px solid #334155; /* border-slate-700 */
+            transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+        }
+        .feature-card-v9:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 15px #F59E0B80;
+            border-color: #F59E0B; 
+        }
+        .testimonial-card-v9 {
+            background-color: #1E293B; /* bg-slate-800 */
+            border-left: 4px solid #F59E0B; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Garante que os cards tenham a mesma altura no grid */
+        }
+        .testimonial-card-v9:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+        .testimonial-avatar {
+            width: 48px; 
+            height: 48px;
+            border-width: 2px;
+            object-fit: cover; 
+        }
+        .rating-stars {
+            color: #FACC15; /* text-yellow-400 */
+        }
+        .notification-popup-v9 {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background-color: #1E293B; 
+            color: #E2E8F0; 
+            padding: 14px 22px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            transform: translateX(-120%);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            font-size: 0.9rem;
+            border: 1px solid #F59E0B; 
+        }
+        .notification-popup-v9.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .image-showcase-v9 { /* Imagens de exemplo na Hero */
+            border: 2px solid #475569; 
+            padding: 5px;
+            background: #1E293B; 
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .image-showcase-v9:hover {
+            transform: scale(1.05);
+            border-color: #F59E0B; 
+            box-shadow: 0 0 20px #F59E0B70;
+        }
+        .product-gallery-container {
+            display: flex;
+            gap: 1rem; /* Espaçamento entre as imagens */
+            overflow-x: auto; /* Permite scroll horizontal se as imagens não couberem */
+            padding-bottom: 1rem; /* Espaço para a barra de rolagem não cobrir as sombras */
+        }
+        .product-gallery-image-wrapper {
+            flex: 0 0 auto; /* Impede que as imagens encolham demais */
+            width: calc(100% / 1.5); /* Em telas pequenas, mostra 1.5 imagens */
+        }
+        @media (min-width: 640px) { /* sm */
+            .product-gallery-image-wrapper {
+                width: calc(100% / 2.5); /* Em telas sm, mostra 2.5 imagens */
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .product-gallery-container {
+                justify-content: center; /* Centraliza se couberem todas */
+            }
+            .product-gallery-image-wrapper {
+                width: calc(100% / 3 - 1rem); /* Em telas lg, mostra 3 imagens com gap */
+                max-width: 280px; /* Limita o tamanho máximo da imagem */
+            }
+        }
+        .product-gallery-image { /* Imagens reais do produto */
+            border: 3px solid #334155; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/4; /* Mantém a proporção da imagem */
+            object-fit: cover;
+        }
+        .product-gallery-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-color: #F59E0B; 
+        }
+        .logo-container-v9 img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .logo-container-v9:hover img {
+            transform: rotate(3deg) scale(1.08);
+            box-shadow: 0 0 15px #F59E0B; 
+        }
+        .fixed-countdown-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            animation: pulse-bg 2s infinite;
+            background-color: #1E293B; 
+            padding: 8px 0;
+            text-align: center;
+            z-index: 1010;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border-bottom: 2px solid #F59E0B; 
         }
-        @keyframes pulse-bg {
-            0% { background-color: #ef4444; } /* red-500 */
-            50% { background-color: #dc2626; } /* red-600 */
-            100% { background-color: #ef4444; } /* red-500 */
+        .fixed-countdown-bar p {
+            margin: 0;
+            color: #E2E8F0; 
+            font-size: 0.9rem;
         }
-        .notification-popup {
+        .fixed-countdown-bar .countdown-timer-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FACC15; 
+            margin-left: 8px;
+        }
+        .floating-buttons-container {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            z-index: 1001;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            opacity: 0;
-            transform: translateY(20px);
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Espaço entre os botões flutuantes */
         }
-        .notification-popup.show {
-            opacity: 1;
-            transform: translateY(0);
+        .floating-btn {
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Para centralizar o ícone, caso necessário */
+            align-items: center;
+            justify-content: center;
         }
-        .hero-bg {
-            background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,1)), url('https://placehold.co/1200x800/e2e8f0/cbd5e0?text=Fundo+Abstrato+Leve');
-            background-size: cover;
-            background-position: center;
-        }
-        .testimonial-card {
-            transition: transform 0.3s ease;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        .cta-button {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .guarantee-icon {
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-        .fab-icon img {
-            transition: transform 0.2s ease-in-out;
-        }
-        .fab-icon:hover img {
+        .floating-btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .floating-btn img {
+            width: 32px;
+            height: 32px;
+            display: block;
+        }
+        .site-header {
+            background-color: #0F172A; 
+            padding-top: 1rem; 
+            padding-bottom: 1rem; 
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body>
 
-    <!-- Timer Banner -->
-    <div id="timer-banner" class="timer-banner bg-red-500 text-white text-center p-3 shadow-lg">
-        <p class="font-bold text-lg md:text-xl">OFERTA EXPIRA EM: <span id="countdown-timer" class="tabular-nums">08:21</span></p>
-        <p class="text-sm md:text-base">Não perca essa chance ÚNICA de transformar seus estudos!</p>
+    <!-- Temporizador Fixo no Topo -->
+    <div class="fixed-countdown-bar">
+        <p>
+            <span class="hidden sm:inline">Aproveite!</span> Esta oferta <span class="text-highlight">SUPER especial</span> termina em:
+            <span id="fixedCountdownTimer" class="countdown-timer-value">08:17</span>
+        </p>
     </div>
 
-    <!-- Header -->
-    <header class="bg-white shadow-md pt-24 md:pt-28">
-        <div class="container mx-auto px-4 py-3 flex justify-start items-center">
-            <img src="https://iili.io/FJx3uRt.jpg" alt="[Logo Destrava Prova em formato de bolha]" class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-sky-400 shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=Logo';">
+    <!-- Header (não mais fixo) -->
+    <header class="site-header"> 
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center logo-container-v9">
+                <img src="https://iili.io/FJx3uRt.jpg" alt="Logo Destrava Prova" class="h-12 w-12 mr-3 rounded-full border-2 border-amber-500" onerror="this.alt='Logo Destrava Prova'; this.src='https://placehold.co/48x48/0F172A/FFFFFF?text=DP';">
+                <h1 class="text-2xl font-bold text-slate-100">Destrava Prova</h1>
+            </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-bg py-12 md:py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-black text-sky-600 mb-6 leading-tight">
-                Chega de Sofrer com Anatomia!
-            </h1>
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-700 mb-8">
-                Aprenda de Forma <span class="text-amber-500">Divertida e EFICIENTE</span> com o Livro Anatomia para Colorir!
+    <section class="py-16 md:py-20 bg-slate-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dotGrid" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#F59E0B"/></pattern></defs><rect width="100%" height="100%" fill="url(#dotGrid)" /></svg>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl sm:text-5xl md:text-5xl font-extrabold mb-5 text-slate-100">
+                <span class="text-highlight">Domine Anatomia</span> Colorindo Seu Caminho para o <span class="text-highlight">Sucesso</span>!
             </h2>
-            <div class="flex justify-center mb-8">
-                <img src="https://iili.io/FJWm3ut.jpg" alt="[Imagem principal do Livro Anatomia para Colorir]" class="rounded-lg shadow-2xl max-w-sm w-full md:max-w-md border-4 border-white" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Livro+Anatomia';">
+            <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+                Cansado de decoreba? Com o <strong class="text-highlight">Anatomia para Colorir</strong>, o aprendizado se torna uma experiência <span class="text-highlight">visual, interativa e incrivelmente eficaz</span>. Suas notas nunca mais serão as mesmas! Esta é sua chance de ouro!
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-6">
+                 <div class="image-showcase-v9 rounded-lg overflow-hidden">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLzvbqwGPxmOWep6tArMBfMGpcPJ6sKnI9zx3ZLvdNzAyxL4blD_F_-tI&s=10" alt="Exemplo de página de anatomia para colorir" class="rounded-md max-w-sm w-full h-auto" onerror="this.alt='Exemplo de Anatomia para Colorir'; this.src='https://placehold.co/360x270/1E293B/FFFFFF?text=Imagem+Anatomia+1';">
+                </div>
+                <div class="image-showcase-v9 rounded-lg overflow-hidden hidden md:block">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMhOerYeIHa8KCDJ5UVcmo7Ivb0Zn55kXDGWa9y6lkxILn8NeZ4SE0Ql2O&s=10" alt="Outro exemplo de página de anatomia para colorir" class="rounded-md max-w-sm w-full h-auto" onerror="this.alt='Exemplo de Anatomia para Colorir'; this.src='https://placehold.co/360x270/1E293B/FFFFFF?text=Imagem+Anatomia+2';">
+                </div>
             </div>
-            <p class="text-lg md:text-xl text-slate-600 mb-4 max-w-2xl mx-auto">
-                Transforme horas de estudo maçante em um aprendizado <strong class="text-sky-600">visual, prático e relaxante</strong>. Fixe o conteúdo de verdade!
-            </p>
-            <p class="text-2xl md:text-3xl font-bold text-red-600 mb-2">
-                OFERTA RELÂMPAGO!
-            </p>
-            <p class="text-xl md:text-2xl text-slate-500 line-through mb-1">De <span class="font-semibold">R$49,90</span></p>
-            <p class="text-5xl md:text-6xl font-extrabold text-green-600 mb-4">
-                POR APENAS R$9,90!
-            </p>
-            <p class="text-sm text-slate-600 mb-8 flex items-center justify-center">
-                <svg class="inline-block w-5 h-5 mr-1.5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                Compra Segura e Garantia de 14 dias! Seu risco é ZERO.
-            </p>
-            <button id="buy-button-hero" class="cta-button bg-green-500 hover:bg-green-600 text-white font-bold text-xl md:text-2xl py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-                QUERO APRENDER ANATOMIA DE VERDADE! <span class="text-sm block">(Só R$9,90 - Oferta Limitada!)</span>
-            </button>
-            <p class="mt-3 text-sm text-slate-600">
-                <svg class="inline-block w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                Satisfação Garantida ou seu dinheiro de volta!
-            </p>
-            <p class="mt-4 text-sm text-red-500 font-semibold">⚠️ Atenção: Esta oferta <strong class="underline">ACABA</strong> quando o cronômetro zerar! ⚠️</p>
+            
+            <div class="mb-6">
+                <p class="text-lg text-slate-400">De <span class="text-xl line-through text-slate-500">R$39,90</span> por apenas</p>
+                <p class="text-4xl font-bold text-price-final-section mb-2">R$9,90</p>
+            </div>
+
+            <a href="https://sun.eduzz.com/7WXQ5J7G9A" target="_blank" rel="noopener noreferrer" class="btn-buy-v9 font-bold py-4 px-10 rounded-lg text-xl inline-flex items-center group">
+                Quero Destravar!
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </a>
+            <p class="mt-4 text-sm text-slate-400">Compra segura e reembolso em 14 dias.</p>
         </div>
     </section>
 
-    <!-- Product Features / More Images -->
-    <section class="py-12 md:py-16 bg-slate-100">
+    <!-- Features Section -->
+    <section class="py-16 bg-slate-800">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-sky-700 mb-10">Por que este livro vai <span class="text-amber-500">REVOLUCIONAR</span> seus estudos?</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <ul class="space-y-4 text-lg text-slate-700">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span><strong>Memorização Turbinada:</strong> Colorir ativa diferentes áreas do cérebro, facilitando a retenção de nomes e estruturas complexas.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span><strong>Aprendizado Lúdico:</strong> Diga adeus à decoreba! Aprenda de forma leve e prazerosa.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span><strong>Redução de Estresse:</strong> Colorir é uma atividade terapêutica que alivia a ansiedade dos estudos.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            <span><strong>Material de Qualidade:</strong> Ilustrações detalhadas e precisas, prontas para ganhar vida com suas cores!</span>
-                        </li>
-                    </ul>
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100">Por Que o Anatomia para Colorir é <span class="text-highlight">Imbatível</span>?</h3>
+            <div class="grid md:grid-cols-3 gap-8 text-slate-300">
+                <div class="feature-card-v9 p-8 rounded-xl text-center">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-14 h-14 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.355a15.069 15.069 0 01-4.5 0m3.75-2.355a12.038 12.038 0 001.125-5.437m-1.125 5.437a12.038 12.038 0 01-1.125-5.437m0 0A12.022 12.022 0 0112 6.75m0 0A12.022 12.022 0 0012 6.75M12 6.75V3.75m0 3H9m3 0h3m-3 8.25V21m0 0H9m3 0h3" />
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold mb-3 text-slate-100"><span class="text-highlight">Memorização</span> Turbinada</h4>
+                    <p>Colorir não é só diversão, é ciência! Ative o poder da memória visual e fixe o conteúdo de verdade.</p>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://iili.io/FJWDyk7.jpg" alt="[Detalhe do livro de anatomia para colorir 1]" class="rounded-lg shadow-xl border-2 border-white transform hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x400/cccccc/333333?text=Página+Interna+1';">
-                    <img src="https://iili.io/FJWmQUl.jpg" alt="[Detalhe do livro de anatomia para colorir 2]" class="rounded-lg shadow-xl border-2 border-white transform hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x400/cccccc/333333?text=Página+Interna+2';">
+                <div class="feature-card-v9 p-8 rounded-xl text-center">
+                     <div class="flex justify-center mb-4">
+                        <svg class="w-14 h-14 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0-1.036.84-1.875 1.875-1.875S13.5 8.714 13.5 9.75s-.84 1.875-1.875 1.875S9.75 10.786 9.75 9.75z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold mb-3 text-slate-100">Estudo <span class="text-highlight">Leve e Prazeroso</span></h4>
+                    <p>Dê um chega pra lá no tédio. Transforme o aprendizado de anatomia em um hobby relaxante e produtivo.</p>
+                </div>
+                <div class="feature-card-v9 p-8 rounded-xl text-center">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-14 h-14 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold mb-3 text-slate-100">Resultados que <span class="text-highlight">Impressionam</span></h4>
+                    <p>Junte-se ao time de alunos que estão detonando nas provas usando uma técnica simples e poderosa.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Guarantee Section -->
-    <section class="py-12 md:py-16 bg-sky-50">
-        <div class="container mx-auto px-6 text-center">
-            <svg class="guarantee-icon mx-auto mb-6 h-20 w-20 md:h-24 md:w-24 text-sky-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-            <h2 class="text-2xl md:text-3xl font-bold text-sky-700 mb-4">RISCO ZERO PARA VOCÊ!</h2>
-            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
-                Temos tanta confiança que você vai AMAR o <strong class="text-slate-800">Livro Anatomia para Colorir</strong> e transformar seus estudos que oferecemos uma <strong class="text-sky-600">Garantia Incondicional de 14 Dias</strong>.
-                Se por <strong class="text-slate-800">QUALQUER</strong> motivo você não ficar 100% satisfeito(a), basta nos enviar um e-mail dentro de 14 dias após a compra e reembolsaremos <strong class="text-slate-800">CADA CENTAVO</strong> do seu investimento. Sem perguntas, sem burocracia. Simples assim!
-            </p>
+    <!-- Product Images Section -->
+    <section class="py-16 bg-slate-900">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-100">Espie o Material <span class="text-highlight">por Dentro</span>!</h3>
+            <div class="product-gallery-container">
+                <div class="product-gallery-image-wrapper">
+                    <img src="https://iili.io/FJWm3ut.jpg" alt="Página interna do e-book Anatomia para Colorir mostrando sistema esquelético" class="product-gallery-image rounded-lg" onerror="this.alt='Imagem do produto 1'; this.src='https://placehold.co/280x373/1E293B/FFFFFF?text=Produto+1';">
+                </div>
+                <div class="product-gallery-image-wrapper">
+                    <img src="https://iili.io/FJWDyk7.jpg" alt="Página interna do e-book Anatomia para Colorir com detalhes do crânio" class="product-gallery-image rounded-lg" onerror="this.alt='Imagem do produto 2'; this.src='https://placehold.co/280x373/1E293B/FFFFFF?text=Produto+2';">
+                </div>
+                <div class="product-gallery-image-wrapper">
+                    <img src="https://iili.io/FJWmQUl.jpg" alt="Página interna do e-book Anatomia para Colorir ilustrando músculos" class="product-gallery-image rounded-lg" onerror="this.alt='Imagem do produto 3'; this.src='https://placehold.co/280x373/1E293B/FFFFFF?text=Produto+3';">
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-12 md:py-16 bg-white">
+    <section class="py-16 bg-slate-800"> 
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-sky-700 mb-10">O que nossos <span class="text-amber-500">alunos</span> estão dizendo:</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Testimonial 1: Ana B. -->
-                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
-                    <div class="flex items-start space-x-3 md:space-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYdIHiY4KdKIx2HQc23Djn3cjeFmW-3Do8Kfvv-5wYOhJNfI84qFTIHli&s=10" alt="[Foto de Ana B.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100">O que a galera tá <span class="text-highlight">achando</span>:</h3>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card-v9 p-6 rounded-lg shadow-lg">
+                    <div>
+                        <div class="flex rating-stars mb-2">
+                            <!-- 5 Estrelas SVG -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-slate-300 mb-4 text-md">"Olha, esse material de colorir anatomia foi o que me ajudou de verdade. Antes eu não pegava o jeito da matéria de jeito nenhum, agora tá fluindo bem melhor nas provas. O preço também foi um ponto positivo, bem acessível."</p>
+                    </div>
+                    <div class="flex items-center mt-auto pt-4 border-t border-slate-700">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwQIvBfbm8zBopoylZ2Ag7f9gn7PMLAMezw&usqp=CAU" alt="Foto de João Victor P." class="testimonial-avatar rounded-full mr-3 border-amber-300" onerror="this.alt='Avatar João V.'; this.src='https://placehold.co/48x48/F59E0B/FFFFFF?text=JV';">
                         <div>
-                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Perfeito pra quem tem dificuldade de gravar anatomia. Eu sempre fui péssima nisso, mas esse livro mudou o jogo pra mim. Super recomendo!"</p>
-                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Ana B., Estudante de Enfermagem</p>
+                            <p class="font-semibold text-amber-300">- João Victor P.</p>
+                            <p class="text-sm text-slate-400">Estudante de Fisioterapia</p>
                         </div>
                     </div>
                 </div>
-                <!-- Testimonial 2: Carlos E. -->
-                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
-                    <div class="flex items-start space-x-3 md:space-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5se3Iwwj9_jg7QxUbFRifRSilZ__34G2cBWCteQOKbzJbCNFJ8QqLNHie&s=10" alt="[Foto de Carlos E.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                <div class="testimonial-card-v9 p-6 rounded-lg shadow-lg">
+                    <div>
+                        <div class="flex rating-stars mb-2">
+                            <!-- 5 Estrelas SVG -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </div>
+                        <p class="text-slate-300 mb-4 text-md">"Eu já tava quase desistindo de aprender o sistema circulatório, sério. Mas colorir as paradas fez uma diferença enorme pra fixar. Recomendo pra quem tem dificuldade, e o valor é justo."</p>
+                    </div>
+                     <div class="flex items-center mt-auto pt-4 border-t border-slate-700">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYdIHiY4KdKIx2HQc23Djn3cjeFmW-3Do8Kfvv-5wYOhJNfI84qFTIHli&s=10" alt="Foto de Mariana Silva" class="testimonial-avatar rounded-full mr-3 border-amber-300" onerror="this.alt='Avatar Mariana S.'; this.src='https://placehold.co/48x48/F59E0B/FFFFFF?text=MS';">
                         <div>
-                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Me salvou na faculdade! Finalmente entendi coisas que pareciam impossíveis. Os desenhos são ótimos e colorir ajuda MUITO a fixar."</p>
-                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Carlos E., Estudante de Medicina</p>
+                            <p class="font-semibold text-amber-300">- Mariana Silva</p>
+                            <p class="text-sm text-slate-400">Futura Biomédica</p>
                         </div>
                     </div>
                 </div>
-                <!-- Testimonial 3: Juliana M. -->
-                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
-                     <div class="flex items-start space-x-3 md:space-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabKjaA4zCG39Wb7To5AHZDm4sjA7b9Cf9nwjd002EQkqowy02KewpBoWy&s=10" alt="[Foto de Juliana M.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
-                        <div>
-                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Tô chocada como aprendi fácil assim. Deveria ter comprado antes! É tipo terapia e estudo ao mesmo tempo. Amei demais!"</p>
-                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Juliana M., Estudante de Fisioterapia</p>
+                <div class="testimonial-card-v9 p-6 rounded-lg shadow-lg">
+                    <div>
+                        <div class="flex rating-stars mb-2">
+                           <!-- 5 Estrelas SVG -->
+                           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                         </div>
+                        <p class="text-slate-300 mb-4 text-md">"Pra quem acha anatomia um parto, esse esquema de colorir é uma boa. Deixa o estudo menos chato e ajuda a lembrar das coisas. Pelo preço, valeu a pena testar."</p>
                     </div>
-                </div>
-                <!-- Testimonial 4: Rafael S. -->
-                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
-                    <div class="flex items-start space-x-3 md:space-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkx6Z2owRI_-zlwvZeb-7SJO_o98r_ONn5KA&usqp=CAU" alt="[Foto de Rafael S.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                     <div class="flex items-center mt-auto pt-4 border-t border-slate-700">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkx6Z2owRI_-zlwvZeb-7SJO_o98r_ONn5KA&usqp=CAU" alt="Foto de Carlos Eduardo M." class="testimonial-avatar rounded-full mr-3 border-amber-300" onerror="this.alt='Avatar Carlos E.'; this.src='https://placehold.co/48x48/F59E0B/FFFFFF?text=CE';">
                         <div>
-                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"O melhor investimento de R$9,90 que já fiz na vida acadêmica. Vale cada centavo e muito mais! Didático e super completo."</p>
-                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Rafael S., Estudante de Ed. Física</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 5: Fernanda L. -->
-                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
-                    <div class="flex items-start space-x-3 md:space-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbzBz1-580SIlRWyAcENukyKfNTRTf97bO0N3v_A53WsvfE40PtCjMQ3AV&s=10" alt="[Foto de Fernanda L.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
-                        <div>
-                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Didático e divertido! Anatomia nunca foi tão prazerosa de estudar. As ilustrações são lindas e ajudam a visualizar tudo."</p>
-                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Fernanda L., Vestibulanda de Medicina</p>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Testimonial 6: Lucas N. -->
-                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
-                    <div class="flex items-start space-x-3 md:space-x-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwQIvBfbm8zBopoylZ2Ag7f9gn7PMLAMezw&usqp=CAU" alt="[Foto de Lucas N.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
-                        <div>
-                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Sério, se você luta com anatomia, ESSE é o livro. Barato, eficiente e ainda relaxa. Que achado!"</p>
-                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Lucas N., Estudante de Biomedicina</p>
+                            <p class="font-semibold text-amber-300">- Carlos Eduardo M.</p>
+                            <p class="text-sm text-slate-400">Aluno de Ed. Física</p>
                         </div>
                     </div>
                 </div>
@@ -233,169 +378,127 @@
         </div>
     </section>
 
-    <!-- Final CTA Section -->
-    <section class="py-12 md:py-20 bg-sky-600 text-white">
+    <!-- Call to Action Section -->
+    <section id="comprar" class="py-20 md:py-24 bg-slate-900"> 
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Sua Chance de Dominar Anatomia é <span class="text-amber-300">AGORA!</span></h2>
-            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-                Não deixe essa oportunidade escapar! O relógio está correndo e essa oferta é por tempo <strong class="uppercase">EXTREMAMENTE LIMITADO</strong>.
-                Invista no seu futuro e no seu aprendizado HOJE!
+            <h3 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-100">Sua Chance <span class="text-highlight">ÚNICA</span> de Dominar Anatomia!</h3>
+             <p class="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
+                Aproveite o preço <span class="text-highlight">promocional POR TEMPO LIMITADO</span> antes que o contador zere! Invista no seu futuro hoje mesmo.
             </p>
-            <div class="flex justify-center mb-6">
-                 <img src="https://iili.io/FJWm3ut.jpg" alt="[Capa do Livro Anatomia para Colorir em destaque]" class="rounded-lg shadow-2xl w-64 border-4 border-amber-300" onerror="this.onerror=null;this.src='https://placehold.co/300x400/cccccc/333333?text=Livro+Anatomia';">
+            <div class="mb-6">
+                <p class="text-xl text-slate-400">De <span class="text-2xl line-through text-slate-500">R$39,90</span></p>
+                <p class="text-slate-200 text-lg">Por APENAS</p>
+                <span class="text-5xl md:text-6xl font-bold text-price-final-section">R$9,90</span>
             </div>
-            <p class="text-xl md:text-2xl text-amber-100 line-through mb-1">De <span class="font-semibold">R$49,90</span></p>
-            <p class="text-5xl md:text-6xl font-extrabold text-amber-300 mb-6">
-                POR APENAS R$9,90!
-            </p>
-            <button id="buy-button-final" class="cta-button bg-green-500 hover:bg-green-400 text-white font-bold text-xl md:text-2xl py-5 px-12 rounded-lg shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
-                GARANTIR MEU LIVRO AGORA!
-            </button>
-            <p class="mt-3 text-sm text-amber-100">
-                 <svg class="inline-block w-4 h-4 mr-1 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                Garantia Incondicional de 14 Dias ou seu dinheiro de volta!
-            </p>
-            <p id="final-warning" class="mt-6 text-red-200 font-semibold text-lg">O tempo está acabando... Não perca!</p>
+            <a href="https://sun.eduzz.com/7WXQ5J7G9A" target="_blank" rel="noopener noreferrer" id="buyButtonFinal" class="btn-buy-v9 font-bold py-4 px-12 rounded-lg text-xl md:text-2xl inline-flex items-center group">
+                Quero adquirir
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3 transform transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+            </a>
+            <p class="mt-6 text-sm text-slate-400">Compra segura e reembolso em 14 dias.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-800 text-slate-300 text-center p-6">
-        <p>&copy; <span id="currentYear"></span> Destrava Prova. Todos os direitos reservados.</p>
-        <p class="text-sm">Este é um produto digital. Acesso imediato após a confirmação do pagamento.</p>
+    <footer class="py-10 bg-slate-800 text-center"> 
+        <p class="text-slate-400">&copy; 2024 Destrava Prova. Todos os direitos reservados.</p>
+        <p class="text-sm text-slate-500">Transformando estudantes em mestres da anatomia.</p>
     </footer>
 
     <!-- Notification Popup -->
-    <div id="notification-popup" class="notification-popup bg-white p-4 rounded-lg shadow-xl border border-slate-300 max-w-xs">
-        <div class="flex items-center">
-            <svg class="w-8 h-8 text-sky-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            <div>
-                <p class="font-semibold text-slate-700" id="notification-text">Alguém acabou de comprar!</p>
-                <p class="text-xs text-slate-500">Há poucos segundos</p>
-            </div>
-        </div>
+    <div id="notificationPopup" class="notification-popup-v9">
+        <span id="notificationMessage"></span>
     </div>
 
-    <!-- Floating Action Buttons -->
-    <div class="fixed bottom-6 right-6 z-[999] flex flex-col items-center space-y-3">
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/5511974488748?text=Ol%C3%A1%2C%20equipe%20Destrava%20Prova!%20Tenho%20uma%20d%C3%BAvida%20e%20gostaria%20de%20esclarecer%20com%20voc%C3%AAs" target="_blank" rel="noopener noreferrer" class="fab-icon w-14 h-14 md:w-16 md:h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors duration-300" aria-label="WhatsApp Destrava Prova">
-            <img src="https://icones.pro/wp-content/uploads/2021/02/whatsapp-logo-icone-blanc.png" alt="[Ícone do WhatsApp]" class="w-7 h-7 md:w-8 md:h-8 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/32x32/ffffff/000000?text=W';">
+    <!-- Floating Buttons Container -->
+    <div class="floating-buttons-container">
+        <a href="https://wa.me/5511974488748?text=Ol%C3%A1%2C%20equipe%20Destrava%20Prova!%20Tenho%20uma%20d%C3%BAvida%20e%20gostaria%20de%20esclarecer%20com%20voc%C3%AAs" target="_blank" rel="noopener noreferrer" class="floating-btn" title="Fale conosco no WhatsApp">
+            <img src="https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1-1.png" alt="WhatsApp Destrava Prova" onerror="this.alt='WhatsApp'; this.src='https://placehold.co/32x32/25D366/FFFFFF?text=W';">
         </a>
-        <!-- Instagram Button -->
-        <a href="https://instagram.com/destravaprova" target="_blank" rel="noopener noreferrer" class="fab-icon w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-opacity duration-300" aria-label="Instagram Destrava Prova">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1200px-Instagram_icon.png" alt="[Ícone do Instagram]" class="w-10 h-10 md:w-11 md:h-11 object-contain p-1" onerror="this.onerror=null;this.src='https://placehold.co/36x36/000000/ffffff?text=I';">
+        <a href="https://instagram.com/destravaprova" target="_blank" rel="noopener noreferrer" class="floating-btn" title="Siga-nos no Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1200px-Instagram_icon.png" alt="Instagram Destrava Prova" onerror="this.alt='Instagram'; this.src='https://placehold.co/32x32/E1306C/FFFFFF?text=IG';">
         </a>
     </div>
 
     <script>
-        // Countdown Timer
-        const countdownElement = document.getElementById('countdown-timer');
-        const timerBanner = document.getElementById('timer-banner');
-        const finalWarning = document.getElementById('final-warning');
-        const buyButtonHero = document.getElementById('buy-button-hero');
-        const buyButtonFinal = document.getElementById('buy-button-final');
+        // Rolagem Suave
+        document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => { 
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const fixedBarHeight = document.querySelector('.fixed-countdown-bar')?.offsetHeight || 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - fixedBarHeight - 10; 
 
-        let timeInSeconds = (8 * 60) + 21; // 8 minutes and 21 seconds
-
-        function updateCountdown() {
-            const minutes = Math.floor(timeInSeconds / 60);
-            const seconds = timeInSeconds % 60;
-            const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            
-            if (countdownElement) {
-                countdownElement.textContent = formattedTime;
-            }
-
-            if (timeInSeconds <= 0) {
-                clearInterval(timerInterval);
-                if (countdownElement) {
-                    countdownElement.textContent = "OFERTA ENCERRADA!";
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
-                if (timerBanner) {
-                    timerBanner.classList.remove('bg-red-500', 'pulse-bg');
-                    timerBanner.classList.add('bg-slate-700');
-                    timerBanner.innerHTML = '<p class="font-bold text-lg md:text-xl">TEMPO ESGOTADO! Esta oferta exclusiva terminou.</p>';
-                }
-                if (finalWarning) {
-                    finalWarning.textContent = "Que pena! A oferta especial encerrou.";
-                    finalWarning.classList.remove('text-red-200');
-                    finalWarning.classList.add('text-yellow-400');
-                }
-                if (buyButtonHero) {
-                    buyButtonHero.disabled = true;
-                    buyButtonHero.textContent = "OFERTA ENCERRADA";
-                    buyButtonHero.classList.remove('bg-green-500', 'hover:bg-green-600');
-                    buyButtonHero.classList.add('bg-slate-400', 'cursor-not-allowed');
-                }
-                 if (buyButtonFinal) {
-                    buyButtonFinal.disabled = true;
-                    buyButtonFinal.textContent = "OFERTA ENCERRADA";
-                    buyButtonFinal.classList.remove('bg-green-500', 'hover:bg-green-400');
-                    buyButtonFinal.classList.add('bg-slate-400', 'cursor-not-allowed');
-                }
+            });
+        });
 
-            } else {
-                timeInSeconds--;
-            }
-        }
-
-        const timerInterval = setInterval(updateCountdown, 1000);
-        updateCountdown(); 
-
-        // Real-time Notifications
-        const notificationPopup = document.getElementById('notification-popup');
-        const notificationText = document.getElementById('notification-text');
-        const names = ["Ricardo G.", "Beatriz L.", "João V.", "Clara F.", "Pedro S.", "Sofia M.", "Gabriel L.", "Laura B.", "Miguel O.", "Helena C."];
-        const cities = ["de São Paulo", "do Rio de Janeiro", "de Belo Horizonte", "de Curitiba", "de Salvador", "de Brasília", "de Fortaleza", "de Manaus", "de Porto Alegre", "de Recife"];
-        const actions = ["acabou de comprar!", "garantiu o seu!", "aproveitou a oferta!", "está aprendendo anatomia!", "não perdeu tempo!", "acaba de destravar os estudos!"];
+        // Notificações
+        const notificationPopup = document.getElementById('notificationPopup');
+        const notificationMessage = document.getElementById('notificationMessage');
+        const notificationNames = ["Ana Julia B.", "Lucas M.", "Gabriela F.", "Pedro R.", "Sofia L.", "Matheus P.", "Laura C.", "Enzo Dias", "Isabella N.", "Miguel T."];
+        const products = ["Anatomia para Colorir"];
 
         function showNotification() {
-            if (!notificationPopup || !notificationText) return;
-
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            const randomCity = cities[Math.floor(Math.random() * cities.length)];
-            const randomAction = actions[Math.floor(Math.random() * actions.length)];
-
-            notificationText.textContent = `${randomName} ${randomCity} ${randomAction}`;
+            const randomName = notificationNames[Math.floor(Math.random() * notificationNames.length)];
+            const randomProduct = products[Math.floor(Math.random() * products.length)];
+            
+            notificationMessage.innerHTML = `🎉 <strong class="text-amber-400">${randomName}</strong> acabou de garantir o <strong>${randomProduct}</strong>!`;
             notificationPopup.classList.add('show');
 
             setTimeout(() => {
                 notificationPopup.classList.remove('show');
-            }, 5000); 
+            }, 6000);
         }
-
         setTimeout(() => {
-            if (timeInSeconds > 0) showNotification();
-            setInterval(() => {
-                if (timeInSeconds > 0) showNotification();
-            }, Math.random() * (25000 - 10000) + 10000); 
-        }, 7000); 
+            showNotification();
+            setInterval(showNotification, Math.random() * (30000 - 12000) + 12000); 
+        }, 8000);
 
+        // Temporizador Fixo no Topo
+        const fixedCountdownElement = document.getElementById('fixedCountdownTimer');
+        let timeInSeconds = (8 * 60) + 17; 
 
-        function handleBuyButtonClick(event) {
-            event.preventDefault(); 
-            if (timeInSeconds <= 0) {
-                alert("A oferta já encerrou. Fique de olho para futuras promoções!");
-                return;
+        function updateFixedCountdown() {
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = timeInSeconds % 60;
+
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
+            if (fixedCountdownElement) {
+                fixedCountdownElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
             }
-            console.log("Botão de compra clicado! Redirecionar para checkout.");
-            alert("Você está sendo redirecionado para a página de pagamento!\n\nProduto: Livro Anatomia para Colorir\nPreço Promocional: R$9,90");
+
+            if (timeInSeconds > 0) {
+                timeInSeconds--;
+            } else {
+                clearInterval(fixedCountdownInterval);
+                if (fixedCountdownElement) {
+                    fixedCountdownElement.textContent = "00:00";
+                    const countdownBar = fixedCountdownElement.closest('.fixed-countdown-bar');
+                    if(countdownBar){
+                        const pElement = countdownBar.querySelector('p');
+                        if(pElement) pElement.innerHTML = '<span class="text-red-500 font-semibold">Esta oferta especial TERMINOU!</span>';
+                    }
+                }
+            }
         }
 
-        if (buyButtonHero) {
-            buyButtonHero.addEventListener('click', handleBuyButtonClick);
-        }
-        if (buyButtonFinal) {
-            buyButtonFinal.addEventListener('click', handleBuyButtonClick);
-        }
-
-        const currentYearElement = document.getElementById('currentYear');
-        if (currentYearElement) {
-            currentYearElement.textContent = new Date().getFullYear();
-        }
+        const fixedCountdownInterval = setInterval(updateFixedCountdown, 1000);
+        updateFixedCountdown(); 
 
     </script>
+
 </body>
 </html>
-
