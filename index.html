@@ -3,201 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destrava Prova - Anatomia para Colorir</title>
+    <title>Oferta Imperdível: Livro Anatomia para Colorir!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #F3F4F6; /* text-gray-200 */
         }
-        .gradient-text {
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .timer-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: pulse-bg 2s infinite;
         }
-        .btn-buy {
-            background: linear-gradient(to right, #10b981, #3b82f6); /* emerald-500 to blue-500 */
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px 0 rgba(59, 130, 246, 0.3);
-        }
-        .btn-buy:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.5);
-            background: linear-gradient(to right, #3b82f6, #10b981);
-        }
-        .testimonial-card {
-            background-color: #1F2937; /* bg-gray-800 */
-            border: 1px solid #374151; /* border-gray-700 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        @keyframes pulse-bg {
+            0% { background-color: #ef4444; } /* red-500 */
+            50% { background-color: #dc2626; } /* red-600 */
+            100% { background-color: #ef4444; } /* red-500 */
         }
         .notification-popup {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background-color: #1F2937; /* bg-gray-800 */
-            color: #E5E7EB; /* text-gray-200 */
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            z-index: 1000;
+            z-index: 1001;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             opacity: 0;
-            transform: translateX(-100%);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            font-size: 0.875rem;
+            transform: translateY(20px);
         }
         .notification-popup.show {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateY(0);
         }
-        .glow-effect {
-            box-shadow: 0 0 15px #3b82f6, 0 0 30px #3b82f633;
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,1)), url('https://placehold.co/1200x800/e2e8f0/cbd5e0?text=Fundo+Abstrato+Leve');
+            background-size: cover;
+            background-position: center;
         }
-        .image-container {
-            border: 2px solid #3b82f6;
-            padding: 4px;
-            background: linear-gradient(145deg, #1f2937, #374151);
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        .cta-button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .guarantee-icon {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        .fab-icon img {
+            transition: transform 0.2s ease-in-out;
+        }
+        .fab-icon:hover img {
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800">
 
-    <header class="py-6 bg-gray-900 shadow-lg">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="https://iili.io/FJx3uRt.jpg" alt="Logo Destrava Prova" class="h-12 w-12 mr-3 rounded-full border-2 border-blue-500" onerror="this.alt='Logo Destrava Prova'; this.src='https://placehold.co/50x50/111827/FFFFFF?text=DP';">
-                <h1 class="text-2xl font-bold gradient-text">Destrava Prova</h1>
-            </div>
+    <!-- Timer Banner -->
+    <div id="timer-banner" class="timer-banner bg-red-500 text-white text-center p-3 shadow-lg">
+        <p class="font-bold text-lg md:text-xl">OFERTA EXPIRA EM: <span id="countdown-timer" class="tabular-nums">08:21</span></p>
+        <p class="text-sm md:text-base">Não perca essa chance ÚNICA de transformar seus estudos!</p>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md pt-24 md:pt-28">
+        <div class="container mx-auto px-4 py-3 flex justify-start items-center">
+            <img src="https://iili.io/FJx3uRt.jpg" alt="[Logo Destrava Prova em formato de bolha]" class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-sky-400 shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/80x80/000000/FFFFFF?text=Logo';">
         </div>
     </header>
 
-    <section class="py-16 md:py-24 bg-gray-900">
+    <!-- Hero Section -->
+    <section class="hero-bg py-12 md:py-20">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6">
-                <span class="gradient-text">Desvende a Anatomia</span> como Nunca Antes!
+            <h1 class="text-4xl md:text-6xl font-black text-sky-600 mb-6 leading-tight">
+                Chega de Sofrer com Anatomia!
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-700 mb-8">
+                Aprenda de Forma <span class="text-amber-500">Divertida e EFICIENTE</span> com o Livro Anatomia para Colorir!
             </h2>
-            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-                Chega de decorar nomes complicados! Com o <strong class="text-blue-400">Anatomia para Colorir</strong>, você aprende de forma divertida, visual e muito mais eficiente. Prepare-se para gabaritar suas provas!
+            <div class="flex justify-center mb-8">
+                <img src="https://iili.io/FJWm3ut.jpg" alt="[Imagem principal do Livro Anatomia para Colorir]" class="rounded-lg shadow-2xl max-w-sm w-full md:max-w-md border-4 border-white" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Livro+Anatomia';">
+            </div>
+            <p class="text-lg md:text-xl text-slate-600 mb-4 max-w-2xl mx-auto">
+                Transforme horas de estudo maçante em um aprendizado <strong class="text-sky-600">visual, prático e relaxante</strong>. Fixe o conteúdo de verdade!
             </p>
-            
-            <div class="flex justify-center mb-12">
-                 <div class="image-container rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLzvbqwGPxmOWep6tArMBfMGpcPJ6sKnI9zx3ZLvdNzAyxL4blD_F_-tI&s=10" alt="Exemplo de Anatomia para Colorir 1" class="rounded-md max-w-sm w-full h-auto" onerror="this.alt='Exemplo de Anatomia para Colorir'; this.src='https://placehold.co/400x300/1F2937/FFFFFF?text=Imagem+Anatomia+1';">
-                </div>
-            </div>
-
-            <a href="#comprar" class="btn-buy text-white font-bold py-4 px-10 rounded-lg text-xl inline-block glow-effect">
-                Quero Destravar Minha Nota por R$9,90!
-            </a>
-            <p class="mt-4 text-sm text-gray-400">Compra segura e acesso imediato.</p>
+            <p class="text-2xl md:text-3xl font-bold text-red-600 mb-2">
+                OFERTA RELÂMPAGO!
+            </p>
+            <p class="text-xl md:text-2xl text-slate-500 line-through mb-1">De <span class="font-semibold">R$49,90</span></p>
+            <p class="text-5xl md:text-6xl font-extrabold text-green-600 mb-4">
+                POR APENAS R$9,90!
+            </p>
+            <p class="text-sm text-slate-600 mb-8 flex items-center justify-center">
+                <svg class="inline-block w-5 h-5 mr-1.5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                Compra Segura e Garantia de 14 dias! Seu risco é ZERO.
+            </p>
+            <button id="buy-button-hero" class="cta-button bg-green-500 hover:bg-green-600 text-white font-bold text-xl md:text-2xl py-4 px-10 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                QUERO APRENDER ANATOMIA DE VERDADE! <span class="text-sm block">(Só R$9,90 - Oferta Limitada!)</span>
+            </button>
+            <p class="mt-3 text-sm text-slate-600">
+                <svg class="inline-block w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                Satisfação Garantida ou seu dinheiro de volta!
+            </p>
+            <p class="mt-4 text-sm text-red-500 font-semibold">⚠️ Atenção: Esta oferta <strong class="underline">ACABA</strong> quando o cronômetro zerar! ⚠️</p>
         </div>
     </section>
 
-    <section class="py-16 bg-gray-800">
+    <!-- Product Features / More Images -->
+    <section class="py-12 md:py-16 bg-slate-100">
         <div class="container mx-auto px-6">
-            <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Por que o Anatomia para Colorir Funciona?</h3>
-            <div class="grid md:grid-cols-3 gap-8 text-gray-300">
-                <div class="p-6 bg-gray-700 rounded-lg shadow-xl hover:shadow-blue-500/50 transition-shadow duration-300">
-                    <svg class="w-12 h-12 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                    <h4 class="text-xl font-semibold mb-2 text-white">Aprendizado Visual</h4>
-                    <p>Colorir ativa áreas do cérebro que facilitam a memorização de formas e estruturas complexas.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-sky-700 mb-10">Por que este livro vai <span class="text-amber-500">REVOLUCIONAR</span> seus estudos?</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <ul class="space-y-4 text-lg text-slate-700">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span><strong>Memorização Turbinada:</strong> Colorir ativa diferentes áreas do cérebro, facilitando a retenção de nomes e estruturas complexas.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span><strong>Aprendizado Lúdico:</strong> Diga adeus à decoreba! Aprenda de forma leve e prazerosa.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span><strong>Redução de Estresse:</strong> Colorir é uma atividade terapêutica que alivia a ansiedade dos estudos.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span><strong>Material de Qualidade:</strong> Ilustrações detalhadas e precisas, prontas para ganhar vida com suas cores!</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="p-6 bg-gray-700 rounded-lg shadow-xl hover:shadow-blue-500/50 transition-shadow duration-300">
-                    <svg class="w-12 h-12 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a4 4 0 00-5.656 0M11.657 8.657a4 4 0 000 5.656m0-5.656l5.656 5.656M4.572 8.572a4 4 0 005.656 0M12.343 15.343a4 4 0 000-5.656m0 5.656l-5.656-5.656"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.923 21.923a2.043 2.043 0 01-2.316-2.316l1.24-7.444-5.398-4.433a2.042 2.042 0 011.113-3.514l7.654 1.667 3.678-6.81a2.043 2.043 0 013.69 1.316l-1.833 7.332 5.398 4.433a2.042 2.042 0 01-1.113 3.514l-7.654-1.667-3.678 6.81z"></path></svg>
-                    <h4 class="text-xl font-semibold mb-2 text-white">Relaxante e Divertido</h4>
-                    <p>Transforme horas de estudo maçante em um momento prazeroso e que realmente fixa o conteúdo.</p>
-                </div>
-                <div class="p-6 bg-gray-700 rounded-lg shadow-xl hover:shadow-blue-500/50 transition-shadow duration-300">
-                     <svg class="w-12 h-12 text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <h4 class="text-xl font-semibold mb-2 text-white">Resultados Comprovados</h4>
-                    <p>Alunos que utilizam métodos visuais como colorir tendem a ter um desempenho superior nas provas.</p>
-                </div>
-            </div>
-             <div class="flex justify-center mt-12">
-                <div class="image-container rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMhOerYeIHa8KCDJ5UVcmo7Ivb0Zn55kXDGWa9y6lkxILn8NeZ4SE0Ql2O&s=10" alt="Exemplo de Anatomia para Colorir 2" class="rounded-md max-w-sm w-full h-auto" onerror="this.alt='Exemplo de Anatomia para Colorir'; this.src='https://placehold.co/400x300/1F2937/FFFFFF?text=Imagem+Anatomia+2';">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">O que Dizem Nossos Alunos?</h3>
-            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="testimonial-card p-6 rounded-lg">
-                    <p class="text-gray-300 mb-4">"Cara, esse material salvou minha pele! Anatomia parecia grego, agora tô gabaritando. Valeu cada centavo dos R$9,90!"</p>
-                    <p class="font-semibold text-blue-400">- João V., Estudante de Med.</p>
-                </div>
-                <div class="testimonial-card p-6 rounded-lg">
-                    <p class="text-gray-300 mb-4">"Nossa, achei que nunca ia entender o sistema circulatório. Colorir ajudou DEMAIS a fixar. Super recomendo, e o preço é um achado!"</p>
-                    <p class="font-semibold text-blue-400">- Maria S., Futura Enfermeira.</p>
-                </div>
-                <div class="testimonial-card p-6 rounded-lg">
-                    <p class="text-gray-300 mb-4">"Finalmente um jeito de estudar anatomia que não dá sono! As ilustrações são top e o preço (só R$9,90?!) é show. Comprei na hora."</p>
-                    <p class="font-semibold text-blue-400">- Pedro A., Vestibulando.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://iili.io/FJWDyk7.jpg" alt="[Detalhe do livro de anatomia para colorir 1]" class="rounded-lg shadow-xl border-2 border-white transform hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x400/cccccc/333333?text=Página+Interna+1';">
+                    <img src="https://iili.io/FJWmQUl.jpg" alt="[Detalhe do livro de anatomia para colorir 2]" class="rounded-lg shadow-xl border-2 border-white transform hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/300x400/cccccc/333333?text=Página+Interna+2';">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="comprar" class="py-16 md:py-24 bg-gray-800">
+    <!-- Guarantee Section -->
+    <section class="py-12 md:py-16 bg-sky-50">
         <div class="container mx-auto px-6 text-center">
-            <h3 class="text-3xl md:text-4xl font-extrabold mb-6 text-white">Pronto para <span class="gradient-text">Dominar a Anatomia</span>?</h3>
-            <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-                Não perca mais tempo com métodos chatos e ineficazes. Adquira agora o seu <strong>Anatomia para Colorir</strong> por um preço inacreditável!
+            <svg class="guarantee-icon mx-auto mb-6 h-20 w-20 md:h-24 md:w-24 text-sky-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+            <h2 class="text-2xl md:text-3xl font-bold text-sky-700 mb-4">RISCO ZERO PARA VOCÊ!</h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                Temos tanta confiança que você vai AMAR o <strong class="text-slate-800">Livro Anatomia para Colorir</strong> e transformar seus estudos que oferecemos uma <strong class="text-sky-600">Garantia Incondicional de 14 Dias</strong>.
+                Se por <strong class="text-slate-800">QUALQUER</strong> motivo você não ficar 100% satisfeito(a), basta nos enviar um e-mail dentro de 14 dias após a compra e reembolsaremos <strong class="text-slate-800">CADA CENTAVO</strong> do seu investimento. Sem perguntas, sem burocracia. Simples assim!
             </p>
-            <div class="mb-6">
-                <span class="text-5xl font-bold text-green-400">R$9,90</span>
-                <span class="text-xl text-gray-400">pagamento único</span>
-            </div>
-            <a href="#" class="btn-buy text-white font-bold py-4 px-12 rounded-lg text-2xl inline-block glow-effect">
-                COMPRAR AGORA E DESTRAVAR MINHA NOTA!
-            </a>
-            <p class="mt-4 text-sm text-gray-400">Garantia de satisfação ou seu dinheiro de volta.</p>
         </div>
     </section>
 
-    <footer class="py-8 bg-gray-900 text-center">
-        <p class="text-gray-400">&copy; 2024 Destrava Prova. Todos os direitos reservados.</p>
-        <p class="text-sm text-gray-500">Feito com <span class="text-red-500">&hearts;</span> para destravar seu potencial.</p>
+    <!-- Testimonials Section -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-sky-700 mb-10">O que nossos <span class="text-amber-500">alunos</span> estão dizendo:</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1: Ana B. -->
+                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-3 md:space-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYdIHiY4KdKIx2HQc23Djn3cjeFmW-3Do8Kfvv-5wYOhJNfI84qFTIHli&s=10" alt="[Foto de Ana B.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                        <div>
+                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Perfeito pra quem tem dificuldade de gravar anatomia. Eu sempre fui péssima nisso, mas esse livro mudou o jogo pra mim. Super recomendo!"</p>
+                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Ana B., Estudante de Enfermagem</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2: Carlos E. -->
+                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-3 md:space-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5se3Iwwj9_jg7QxUbFRifRSilZ__34G2cBWCteQOKbzJbCNFJ8QqLNHie&s=10" alt="[Foto de Carlos E.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                        <div>
+                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Me salvou na faculdade! Finalmente entendi coisas que pareciam impossíveis. Os desenhos são ótimos e colorir ajuda MUITO a fixar."</p>
+                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Carlos E., Estudante de Medicina</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3: Juliana M. -->
+                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
+                     <div class="flex items-start space-x-3 md:space-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabKjaA4zCG39Wb7To5AHZDm4sjA7b9Cf9nwjd002EQkqowy02KewpBoWy&s=10" alt="[Foto de Juliana M.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                        <div>
+                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Tô chocada como aprendi fácil assim. Deveria ter comprado antes! É tipo terapia e estudo ao mesmo tempo. Amei demais!"</p>
+                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Juliana M., Estudante de Fisioterapia</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 4: Rafael S. -->
+                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-3 md:space-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkx6Z2owRI_-zlwvZeb-7SJO_o98r_ONn5KA&usqp=CAU" alt="[Foto de Rafael S.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                        <div>
+                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"O melhor investimento de R$9,90 que já fiz na vida acadêmica. Vale cada centavo e muito mais! Didático e super completo."</p>
+                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Rafael S., Estudante de Ed. Física</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 5: Fernanda L. -->
+                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-3 md:space-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbzBz1-580SIlRWyAcENukyKfNTRTf97bO0N3v_A53WsvfE40PtCjMQ3AV&s=10" alt="[Foto de Fernanda L.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                        <div>
+                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Didático e divertido! Anatomia nunca foi tão prazerosa de estudar. As ilustrações são lindas e ajudam a visualizar tudo."</p>
+                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Fernanda L., Vestibulanda de Medicina</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Testimonial 6: Lucas N. -->
+                <div class="testimonial-card bg-slate-50 p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-start space-x-3 md:space-x-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwQIvBfbm8zBopoylZ2Ag7f9gn7PMLAMezw&usqp=CAU" alt="[Foto de Lucas N.]" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-sky-100 flex-shrink-0 mt-1" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/555555?text=Foto';">
+                        <div>
+                            <p class="text-slate-700 mb-2 italic text-sm md:text-base">"Sério, se você luta com anatomia, ESSE é o livro. Barato, eficiente e ainda relaxa. Que achado!"</p>
+                            <p class="font-semibold text-sky-600 text-xs md:text-sm">- Lucas N., Estudante de Biomedicina</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-12 md:py-20 bg-sky-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Sua Chance de Dominar Anatomia é <span class="text-amber-300">AGORA!</span></h2>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+                Não deixe essa oportunidade escapar! O relógio está correndo e essa oferta é por tempo <strong class="uppercase">EXTREMAMENTE LIMITADO</strong>.
+                Invista no seu futuro e no seu aprendizado HOJE!
+            </p>
+            <div class="flex justify-center mb-6">
+                 <img src="https://iili.io/FJWm3ut.jpg" alt="[Capa do Livro Anatomia para Colorir em destaque]" class="rounded-lg shadow-2xl w-64 border-4 border-amber-300" onerror="this.onerror=null;this.src='https://placehold.co/300x400/cccccc/333333?text=Livro+Anatomia';">
+            </div>
+            <p class="text-xl md:text-2xl text-amber-100 line-through mb-1">De <span class="font-semibold">R$49,90</span></p>
+            <p class="text-5xl md:text-6xl font-extrabold text-amber-300 mb-6">
+                POR APENAS R$9,90!
+            </p>
+            <button id="buy-button-final" class="cta-button bg-green-500 hover:bg-green-400 text-white font-bold text-xl md:text-2xl py-5 px-12 rounded-lg shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
+                GARANTIR MEU LIVRO AGORA!
+            </button>
+            <p class="mt-3 text-sm text-amber-100">
+                 <svg class="inline-block w-4 h-4 mr-1 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                Garantia Incondicional de 14 Dias ou seu dinheiro de volta!
+            </p>
+            <p id="final-warning" class="mt-6 text-red-200 font-semibold text-lg">O tempo está acabando... Não perca!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-300 text-center p-6">
+        <p>&copy; <span id="currentYear"></span> Destrava Prova. Todos os direitos reservados.</p>
+        <p class="text-sm">Este é um produto digital. Acesso imediato após a confirmação do pagamento.</p>
     </footer>
 
-    <div id="notificationPopup" class="notification-popup">
-        <span id="notificationMessage"></span>
+    <!-- Notification Popup -->
+    <div id="notification-popup" class="notification-popup bg-white p-4 rounded-lg shadow-xl border border-slate-300 max-w-xs">
+        <div class="flex items-center">
+            <svg class="w-8 h-8 text-sky-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <div>
+                <p class="font-semibold text-slate-700" id="notification-text">Alguém acabou de comprar!</p>
+                <p class="text-xs text-slate-500">Há poucos segundos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-[999] flex flex-col items-center space-y-3">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/5511974488748?text=Ol%C3%A1%2C%20equipe%20Destrava%20Prova!%20Tenho%20uma%20d%C3%BAvida%20e%20gostaria%20de%20esclarecer%20com%20voc%C3%AAs" target="_blank" rel="noopener noreferrer" class="fab-icon w-14 h-14 md:w-16 md:h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors duration-300" aria-label="WhatsApp Destrava Prova">
+            <img src="https://icones.pro/wp-content/uploads/2021/02/whatsapp-logo-icone-blanc.png" alt="[Ícone do WhatsApp]" class="w-7 h-7 md:w-8 md:h-8 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/32x32/ffffff/000000?text=W';">
+        </a>
+        <!-- Instagram Button -->
+        <a href="https://instagram.com/destravaprova" target="_blank" rel="noopener noreferrer" class="fab-icon w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-opacity duration-300" aria-label="Instagram Destrava Prova">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1200px-Instagram_icon.png" alt="[Ícone do Instagram]" class="w-10 h-10 md:w-11 md:h-11 object-contain p-1" onerror="this.onerror=null;this.src='https://placehold.co/36x36/000000/ffffff?text=I';">
+        </a>
     </div>
 
     <script>
-        const notificationPopup = document.getElementById('notificationPopup');
-        const notificationMessage = document.getElementById('notificationMessage');
-        
-        const names = ["Lucas", "Ana P.", "Carlos R.", "Sofia M.", "Rafael G.", "Beatriz L.", "Gustavo S.", "Laura F.", "Matheus C.", "Isabela N."];
-        const products = ["Anatomia para Colorir"]; // Pode adicionar mais produtos se quiser variar
+        // Countdown Timer
+        const countdownElement = document.getElementById('countdown-timer');
+        const timerBanner = document.getElementById('timer-banner');
+        const finalWarning = document.getElementById('final-warning');
+        const buyButtonHero = document.getElementById('buy-button-hero');
+        const buyButtonFinal = document.getElementById('buy-button-final');
+
+        let timeInSeconds = (8 * 60) + 21; // 8 minutes and 21 seconds
+
+        function updateCountdown() {
+            const minutes = Math.floor(timeInSeconds / 60);
+            const seconds = timeInSeconds % 60;
+            const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            if (countdownElement) {
+                countdownElement.textContent = formattedTime;
+            }
+
+            if (timeInSeconds <= 0) {
+                clearInterval(timerInterval);
+                if (countdownElement) {
+                    countdownElement.textContent = "OFERTA ENCERRADA!";
+                }
+                if (timerBanner) {
+                    timerBanner.classList.remove('bg-red-500', 'pulse-bg');
+                    timerBanner.classList.add('bg-slate-700');
+                    timerBanner.innerHTML = '<p class="font-bold text-lg md:text-xl">TEMPO ESGOTADO! Esta oferta exclusiva terminou.</p>';
+                }
+                if (finalWarning) {
+                    finalWarning.textContent = "Que pena! A oferta especial encerrou.";
+                    finalWarning.classList.remove('text-red-200');
+                    finalWarning.classList.add('text-yellow-400');
+                }
+                if (buyButtonHero) {
+                    buyButtonHero.disabled = true;
+                    buyButtonHero.textContent = "OFERTA ENCERRADA";
+                    buyButtonHero.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    buyButtonHero.classList.add('bg-slate-400', 'cursor-not-allowed');
+                }
+                 if (buyButtonFinal) {
+                    buyButtonFinal.disabled = true;
+                    buyButtonFinal.textContent = "OFERTA ENCERRADA";
+                    buyButtonFinal.classList.remove('bg-green-500', 'hover:bg-green-400');
+                    buyButtonFinal.classList.add('bg-slate-400', 'cursor-not-allowed');
+                }
+
+            } else {
+                timeInSeconds--;
+            }
+        }
+
+        const timerInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); 
+
+        // Real-time Notifications
+        const notificationPopup = document.getElementById('notification-popup');
+        const notificationText = document.getElementById('notification-text');
+        const names = ["Ricardo G.", "Beatriz L.", "João V.", "Clara F.", "Pedro S.", "Sofia M.", "Gabriel L.", "Laura B.", "Miguel O.", "Helena C."];
+        const cities = ["de São Paulo", "do Rio de Janeiro", "de Belo Horizonte", "de Curitiba", "de Salvador", "de Brasília", "de Fortaleza", "de Manaus", "de Porto Alegre", "de Recife"];
+        const actions = ["acabou de comprar!", "garantiu o seu!", "aproveitou a oferta!", "está aprendendo anatomia!", "não perdeu tempo!", "acaba de destravar os estudos!"];
 
         function showNotification() {
+            if (!notificationPopup || !notificationText) return;
+
             const randomName = names[Math.floor(Math.random() * names.length)];
-            const randomProduct = products[Math.floor(Math.random() * products.length)];
-            
-            notificationMessage.textContent = `${randomName} acabou de comprar ${randomProduct}!`;
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            const randomAction = actions[Math.floor(Math.random() * actions.length)];
+
+            notificationText.textContent = `${randomName} ${randomCity} ${randomAction}`;
             notificationPopup.classList.add('show');
 
             setTimeout(() => {
                 notificationPopup.classList.remove('show');
-            }, 5000); // Notificação some após 5 segundos
+            }, 5000); 
         }
 
-        // Mostra a primeira notificação após um tempo e depois em intervalos
         setTimeout(() => {
-            showNotification();
-            setInterval(showNotification, Math.random() * (25000 - 10000) + 10000); // Intervalo aleatório entre 10-25s
-        }, 7000); // Primeira notificação após 7 segundos
-    </script>
+            if (timeInSeconds > 0) showNotification();
+            setInterval(() => {
+                if (timeInSeconds > 0) showNotification();
+            }, Math.random() * (25000 - 10000) + 10000); 
+        }, 7000); 
 
+
+        function handleBuyButtonClick(event) {
+            event.preventDefault(); 
+            if (timeInSeconds <= 0) {
+                alert("A oferta já encerrou. Fique de olho para futuras promoções!");
+                return;
+            }
+            console.log("Botão de compra clicado! Redirecionar para checkout.");
+            alert("Você está sendo redirecionado para a página de pagamento!\n\nProduto: Livro Anatomia para Colorir\nPreço Promocional: R$9,90");
+        }
+
+        if (buyButtonHero) {
+            buyButtonHero.addEventListener('click', handleBuyButtonClick);
+        }
+        if (buyButtonFinal) {
+            buyButtonFinal.addEventListener('click', handleBuyButtonClick);
+        }
+
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+
+    </script>
 </body>
 </html>
 
