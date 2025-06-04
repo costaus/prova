@@ -22,7 +22,7 @@
             color: #22D3EE; /* text-cyan-400 */
             font-weight: 700;
         }
-        .btn-buy-v14 {
+        .btn-buy-v14 { /* Mantendo a classe da versão anterior para consistência visual */
             background-color: #F59E0B; /* bg-amber-500 */
             color: #422006; 
             transition: all 0.3s ease-in-out;
@@ -468,18 +468,21 @@
 
         function handleBuyButtonClick(event) {
             const button = event.currentTarget;
-            // Verifica se o href atual NÃO é o link de obrigado
-            // E se não é um clique com botão do meio/direito ou com ctrl/shift
-            if (button.href !== obrigadoLinkGlobal && !(event.metaKey || event.ctrlKey || event.button === 1)) {
+
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.button > 0) {
+                return; 
+            }
+
+            if (button.href === eduzzLinkGlobal) { 
                 event.preventDefault(); 
                 window.open(eduzzLinkGlobal, '_blank'); 
-                button.href = obrigadoLinkGlobal;      
-                button.target = '_self';         
+
+                button.href = obrigadoLinkGlobal;
+                button.target = '_self'; 
                 if (button.getAttribute('rel') === 'noopener noreferrer') {
-                    button.removeAttribute('rel');
+                    button.removeAttribute('rel'); 
                 }
             }
-            // Se o href já é o de obrigado, o comportamento padrão do link (abrir na mesma aba devido ao target='_self') ocorrerá.
         }
 
         const buyButtonHero = document.getElementById('buyButtonHero');
