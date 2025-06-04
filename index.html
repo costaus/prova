@@ -22,28 +22,28 @@
             color: #22D3EE; /* text-cyan-400 */
             font-weight: 700;
         }
-        .btn-buy-v13 {
+        .btn-buy-v14 {
             background-color: #F59E0B; /* bg-amber-500 */
             color: #422006; 
             transition: all 0.3s ease-in-out;
             box-shadow: 0 4px 15px 0 rgba(245, 158, 11, 0.3);
         }
-        .btn-buy-v13:hover {
+        .btn-buy-v14:hover {
             background-color: #D97706; /* bg-amber-600 */
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 8px 25px 0 rgba(245, 158, 11, 0.5);
         }
-        .feature-card-v13 {
+        .feature-card-v14 {
             background-color: #1E293B; /* bg-slate-800 */
             border: 1px solid #334155; /* border-slate-700 */
             transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.3s ease;
         }
-        .feature-card-v13:hover {
+        .feature-card-v14:hover {
             transform: translateY(-6px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 15px #F59E0B80;
             border-color: #F59E0B; 
         }
-        .testimonial-card-v13 {
+        .testimonial-card-v14 {
             background-color: #1E293B; /* bg-slate-800 */
             border-left: 4px solid #F59E0B; 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -52,7 +52,7 @@
             justify-content: space-between;
             height: 100%; 
         }
-        .testimonial-card-v13:hover {
+        .testimonial-card-v14:hover {
             transform: scale(1.03);
             box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
         }
@@ -65,7 +65,7 @@
         .rating-stars {
             color: #FACC15; /* text-yellow-400 */
         }
-        .notification-popup-v13 {
+        .notification-popup-v14 {
             position: fixed;
             bottom: 25px;
             left: 25px;
@@ -81,17 +81,17 @@
             font-size: 0.9rem;
             border: 1px solid #F59E0B; 
         }
-        .notification-popup-v13.show {
+        .notification-popup-v14.show {
             opacity: 1;
             transform: translateX(0);
         }
-        .image-showcase-v13 { /* Imagens de exemplo na Hero */
+        .image-showcase-v14 { /* Imagens de exemplo na Hero */
             border: 2px solid #475569; 
             padding: 5px;
             background: #1E293B; 
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .image-showcase-v13:hover {
+        .image-showcase-v14:hover {
             transform: scale(1.05);
             border-color: #F59E0B; 
             box-shadow: 0 0 20px #F59E0B70;
@@ -131,10 +131,10 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             border-color: #F59E0B; 
         }
-        .logo-container-v13 img {
+        .logo-container-v14 img {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .logo-container-v13:hover img {
+        .logo-container-v14:hover img {
             transform: rotate(3deg) scale(1.08);
             box-shadow: 0 0 15px #F59E0B; 
         }
@@ -170,24 +170,22 @@
         }
         .university-logo-wrapper { 
             padding: 0.5rem; 
-            border-radius: 0.375rem; /* rounded-md */
-            background-color: rgba(255, 255, 255, 0.95); /* Fundo branco/quase branco para os logos */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra sutil */
+            border-radius: 0.375rem; 
+            background-color: rgba(255, 255, 255, 0.95); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .university-logo-wrapper:hover {
-            background-color: rgba(245, 158, 11, 0.15); /* Fundo âmbar mais visível no hover */
+            background-color: rgba(245, 158, 11, 0.15); 
             transform: scale(1.05); 
             box-shadow: 0 4px 8px rgba(245, 158, 11, 0.2);
         }
         .university-logo {
-            height: 3.5rem; /* h-14, um pouco maior */
-            /* filter: grayscale(30%) brightness(1.2); Removido filtro inicial para melhor visualização no fundo branco */
+            height: 3.5rem; 
             transition: transform 0.3s ease; 
         }
         .university-logo-wrapper:hover .university-logo { 
-            /* filter: grayscale(0%) brightness(1); Não é mais necessário se o fundo do wrapper muda */
-            transform: scale(0.98); /* Leve encolhimento do logo para efeito no hover do wrapper */
+            transform: scale(0.98); 
         }
         .floating-buttons-container {
             position: fixed;
@@ -237,7 +235,7 @@
     <!-- Header (não mais fixo) -->
     <header class="site-header"> 
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center logo-container-v13">
+            <a href="#" class="flex items-center logo-container-v14">
                 <img src="https://iili.io/FJx3uRt.jpg" alt="Logo Destrava Prova" class="h-12 w-12 mr-3 rounded-full border-2 border-amber-500" onerror="this.alt='Logo Destrava Prova'; this.src='https://placehold.co/48x48/0F172A/FFFFFF?text=DP';">
                 <h1 class="text-2xl font-bold text-slate-100">Destrava Prova</h1>
             </a>
@@ -245,7 +243,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-8 md:pt-12 pb-16 bg-slate-900 relative overflow-hidden"> <!-- Padding top ainda mais reduzido -->
+    <section class="pt-8 md:pt-12 pb-16 bg-slate-900 relative overflow-hidden">
         <div class="absolute inset-0 opacity-5">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dotGrid" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#F59E0B"/></pattern></defs><rect width="100%" height="100%" fill="url(#dotGrid)" /></svg>
         </div>
@@ -258,10 +256,10 @@
             </p>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-6">
-                 <div class="image-showcase-v13 rounded-lg overflow-hidden">
+                 <div class="image-showcase-v14 rounded-lg overflow-hidden">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLzvbqwGPxmOWep6tArMBfMGpcPJ6sKnI9zx3ZLvdNzAyxL4blD_F_-tI&s=10" alt="Exemplo de página de anatomia para colorir" class="rounded-md max-w-sm w-full h-auto" onerror="this.alt='Exemplo de Anatomia para Colorir'; this.src='https://placehold.co/360x270/1E293B/FFFFFF?text=Imagem+Anatomia+1';">
                 </div>
-                <div class="image-showcase-v13 rounded-lg overflow-hidden hidden md:block">
+                <div class="image-showcase-v14 rounded-lg overflow-hidden hidden md:block">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMhOerYeIHa8KCDJ5UVcmo7Ivb0Zn55kXDGWa9y6lkxILn8NeZ4SE0Ql2O&s=10" alt="Outro exemplo de página de anatomia para colorir" class="rounded-md max-w-sm w-full h-auto" onerror="this.alt='Exemplo de Anatomia para Colorir'; this.src='https://placehold.co/360x270/1E293B/FFFFFF?text=Imagem+Anatomia+2';">
                 </div>
             </div>
@@ -271,7 +269,7 @@
                 <p class="text-4xl font-bold text-price-final-section mb-2">R$9,90</p>
             </div>
 
-            <a href="https://sun.eduzz.com/7WXQ5J7G9A" target="_blank" rel="noopener noreferrer" class="btn-buy-v13 font-bold py-4 px-10 rounded-lg text-xl inline-flex items-center group">
+            <a href="https://sun.eduzz.com/7WXQ5J7G9A" target="_blank" rel="noopener noreferrer" id="buyButtonHero" class="btn-buy-v14 font-bold py-4 px-10 rounded-lg text-xl inline-flex items-center group">
                 Quero Destravar!
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -303,7 +301,7 @@
         <div class="container mx-auto px-6">
             <h3 class="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100">Por Que o Anatomia para Colorir é <span class="text-highlight">Imbatível</span>?</h3>
             <div class="grid md:grid-cols-3 gap-8 text-slate-300">
-                <div class="feature-card-v13 p-8 rounded-xl text-center">
+                <div class="feature-card-v14 p-8 rounded-xl text-center">
                     <div class="flex justify-center mb-4">
                         <svg class="w-14 h-14 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.355a15.069 15.069 0 01-4.5 0m3.75-2.355a12.038 12.038 0 001.125-5.437m-1.125 5.437a12.038 12.038 0 01-1.125-5.437m0 0A12.022 12.022 0 0112 6.75m0 0A12.022 12.022 0 0012 6.75M12 6.75V3.75m0 3H9m3 0h3m-3 8.25V21m0 0H9m3 0h3" />
@@ -312,7 +310,7 @@
                     <h4 class="text-2xl font-semibold mb-3 text-slate-100"><span class="text-highlight">Memorização</span> Turbinada</h4>
                     <p>Colorir não é só diversão, é ciência! Ative o poder da memória visual e fixe o conteúdo de verdade.</p>
                 </div>
-                <div class="feature-card-v13 p-8 rounded-xl text-center">
+                <div class="feature-card-v14 p-8 rounded-xl text-center">
                      <div class="flex justify-center mb-4">
                         <svg class="w-14 h-14 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0-1.036.84-1.875 1.875-1.875S13.5 8.714 13.5 9.75s-.84 1.875-1.875 1.875S9.75 10.786 9.75 9.75z" />
@@ -321,7 +319,7 @@
                     <h4 class="text-2xl font-semibold mb-3 text-slate-100">Estudo <span class="text-highlight">Leve e Prazeroso</span></h4>
                     <p>Dê um chega pra lá no tédio. Transforme o aprendizado de anatomia em um hobby relaxante e produtivo.</p>
                 </div>
-                <div class="feature-card-v13 p-8 rounded-xl text-center">
+                <div class="feature-card-v14 p-8 rounded-xl text-center">
                     <div class="flex justify-center mb-4">
                         <svg class="w-14 h-14 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -357,7 +355,7 @@
         <div class="container mx-auto px-6">
             <h3 class="text-3xl md:text-4xl font-bold text-center mb-16 text-slate-100">O que a galera tá <span class="text-highlight">achando</span>:</h3>
             <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="testimonial-card-v13 p-6 rounded-lg shadow-lg">
+                <div class="testimonial-card-v14 p-6 rounded-lg shadow-lg">
                     <div>
                         <div class="flex rating-stars mb-2">
                             <!-- 5 Estrelas SVG -->
@@ -377,7 +375,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card-v13 p-6 rounded-lg shadow-lg">
+                <div class="testimonial-card-v14 p-6 rounded-lg shadow-lg">
                     <div>
                         <div class="flex rating-stars mb-2">
                            <!-- 5 Estrelas SVG -->
@@ -397,7 +395,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card-v13 p-6 rounded-lg shadow-lg">
+                <div class="testimonial-card-v14 p-6 rounded-lg shadow-lg">
                     <div>
                         <div class="flex rating-stars mb-2">
                            <!-- 5 Estrelas SVG -->
@@ -433,7 +431,7 @@
                 <p class="text-slate-200 text-lg">Por APENAS</p>
                 <span class="text-5xl md:text-6xl font-bold text-price-final-section">R$9,90</span>
             </div>
-            <a href="https://sun.eduzz.com/7WXQ5J7G9A" target="_blank" rel="noopener noreferrer" id="buyButtonFinal" class="btn-buy-v13 font-bold py-4 px-12 rounded-lg text-xl md:text-2xl inline-flex items-center group">
+            <a href="https://sun.eduzz.com/7WXQ5J7G9A" target="_blank" rel="noopener noreferrer" id="buyButtonFinal" class="btn-buy-v14 font-bold py-4 px-12 rounded-lg text-xl md:text-2xl inline-flex items-center group">
                 Quero adquirir
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3 transform transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -450,7 +448,7 @@
     </footer>
 
     <!-- Notification Popup -->
-    <div id="notificationPopup" class="notification-popup-v13">
+    <div id="notificationPopup" class="notification-popup-v14">
         <span id="notificationMessage"></span>
     </div>
 
@@ -465,6 +463,35 @@
     </div>
 
     <script>
+        const eduzzLinkGlobal = 'https://sun.eduzz.com/7WXQ5J7G9A';
+        const obrigadoLinkGlobal = 'https://obrigado.destravaprova.shop/';
+
+        function handleBuyButtonClick(event) {
+            const button = event.currentTarget;
+            // Verifica se o href atual NÃO é o link de obrigado
+            // E se não é um clique com botão do meio/direito ou com ctrl/shift
+            if (button.href !== obrigadoLinkGlobal && !(event.metaKey || event.ctrlKey || event.button === 1)) {
+                event.preventDefault(); 
+                window.open(eduzzLinkGlobal, '_blank'); 
+                button.href = obrigadoLinkGlobal;      
+                button.target = '_self';         
+                if (button.getAttribute('rel') === 'noopener noreferrer') {
+                    button.removeAttribute('rel');
+                }
+            }
+            // Se o href já é o de obrigado, o comportamento padrão do link (abrir na mesma aba devido ao target='_self') ocorrerá.
+        }
+
+        const buyButtonHero = document.getElementById('buyButtonHero');
+        const buyButtonFinal = document.getElementById('buyButtonFinal');
+
+        if (buyButtonHero) {
+            buyButtonHero.addEventListener('click', handleBuyButtonClick);
+        }
+        if (buyButtonFinal) {
+            buyButtonFinal.addEventListener('click', handleBuyButtonClick);
+        }
+
         // Rolagem Suave
         document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => { 
             anchor.addEventListener('click', function (e) {
@@ -545,4 +572,3 @@
 
 </body>
 </html>
-
