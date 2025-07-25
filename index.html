@@ -51,12 +51,13 @@
     </div>
 
     <!-- Header -->
-    <header class="bg-white shadow-md py-4 px-6 md:px-12 flex flex-col md:flex-row items-center justify-between sticky top-0 z-40">
-        <div class="flex items-center mb-4 md:mb-0">
-            <img src="https://iili.io/FkNTfjt.png" alt="Logo Doceria Mineira" class="h-16 w-auto rounded-full shadow-lg">
-            <h1 class="text-3xl font-extrabold text-gray-800 ml-4">Doceria Mineira</h1>
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
+        <div class="flex flex-col items-center mb-4">
+            <!-- Logo principal com tamanho ajustado para melhor visualização -->
+            <img src="https://iili.io/FkNTfjt.png" alt="Logo Doceria Mineira" class="h-24 md:h-32 w-auto object-contain rounded-full shadow-lg mb-2">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 text-center">Doceria Mineira</h1>
         </div>
-        <nav class="flex flex-wrap justify-center gap-4">
+        <nav class="flex flex-wrap justify-center gap-4 mt-4">
             <a href="#hero" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Início</a>
             <a href="#products" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Produtos</a>
             <a href="#morango-do-amor" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Morango do Amor</a>
@@ -251,51 +252,76 @@
             const locationSpinner = document.getElementById('location-spinner');
             const locationDetail = document.getElementById('location-detail');
 
-            // Function to hide the overlay
+            // Function to hide the overlay with a fade-out effect
             const hideOverlay = () => {
                 locationOverlay.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => {
                     locationOverlay.style.display = 'none';
-                }, 500); // Match transition duration
+                }, 500); // Matches the transition duration in CSS
             };
 
-            // Simulate location detection
+            // Function to show a message and hide the spinner
+            const showMessageAndHideSpinner = (message, detail = '', delay = 2000) => {
+                locationMessage.textContent = message;
+                locationSpinner.classList.add('hidden');
+                if (detail) {
+                    locationDetail.textContent = detail;
+                    locationDetail.classList.remove('hidden');
+                }
+                setTimeout(hideOverlay, delay);
+            };
+
+            // Check for Geolocation API support
             if (navigator.geolocation) {
+                // Request geolocation permission
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
+                        // Success callback
                         setTimeout(() => {
                             const lat = position.coords.latitude.toFixed(4);
                             const lon = position.coords.longitude.toFixed(4);
                             // In a real application, you would use a reverse geocoding API here
                             // to get the city name from lat/lon.
                             // Example: fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=YOUR_API_KEY`)
-                            // For this example, we'll use a placeholder.
-                            locationMessage.textContent = 'Loja mais próxima: Sua Cidade Detectada - 2 km';
-                            locationDetail.textContent = `(Latitude: ${lat}, Longitude: ${lon})`;
-                            locationDetail.classList.remove('hidden');
-                            locationSpinner.classList.add('hidden');
-                            setTimeout(hideOverlay, 2000); // Keep message visible for 2 seconds
+                            // For this example, we'll use a placeholder message.
+                            showMessageAndHideSpinner('Loja mais próxima: Sua Cidade Detectada - 2 km', `(Latitude: ${lat}, Longitude: ${lon})`);
                         }, 3000); // Simulate 3 seconds search time
                     },
                     (error) => {
+                        // Error callback
                         console.error("Erro ao obter a geolocalização:", error);
+                        let errorMessage = 'Não foi possível detectar sua localização.';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = 'Permissão de geolocalização negada.';
+                                break;
+                            case error.REJECTED:
+                                errorMessage = 'Acesso à geolocalização rejeitado.';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = 'Informações de localização indisponíveis.';
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = 'Tempo limite para obter a localização excedido.';
+                                break;
+                            default:
+                                errorMessage = 'Erro desconhecido ao obter a localização.';
+                                break;
+                        }
                         setTimeout(() => {
-                            locationMessage.textContent = 'Não foi possível detectar sua localização.';
-                            locationSpinner.classList.add('hidden');
-                            setTimeout(hideOverlay, 2000); // Keep message visible for 2 seconds
+                            showMessageAndHideSpinner(errorMessage);
                         }, 3000); // Simulate 3 seconds search time
                     },
                     {
-                        enableHighAccuracy: true,
+                        enableHighAccuracy: true, // Request high accuracy
                         timeout: 10000, // 10 seconds timeout
                         maximumAge: 0 // No cached position
                     }
                 );
             } else {
+                // Geolocation not supported by the browser
                 setTimeout(() => {
-                    locationMessage.textContent = 'Geolocalização não é suportada pelo seu navegador.';
-                    locationSpinner.classList.add('hidden');
-                    setTimeout(hideOverlay, 2000); // Keep message visible for 2 seconds
+                    showMessageAndHideSpinner('Geolocalização não é suportada pelo seu navegador.');
                 }, 3000); // Simulate 3 seconds search time
             }
         });
