@@ -6,11 +6,12 @@
     <title>Doceria Mineira - Morango do Amor</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Light background */
+            background-color: #fcfcfc; /* Fundo mais claro e suave */
+            color: #333;
         }
         .main-color {
             background-color: #EE318C;
@@ -20,6 +21,9 @@
         }
         .border-main-color {
             border-color: #EE318C;
+        }
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
         }
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
@@ -36,146 +40,155 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #d82a7e;
         }
+
+        /* Smooth scroll for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero section background pattern */
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 2v-2h-2v2h2zm0 56v-2H0v2h2zM58 2v-2h-2v2h2zm0 56v-2h-2v2h2zM4 2v-2H2v2h2zm0 56v-2H2v2h2zM56 2v-2h-2v2h2zm0 56v-2h-2v2h2zM18 2v-2h-2v2h2zm0 56v-2h-2v2h2zM42 2v-2h-2v2h2zm0 56v-2h-2v2h2zm16-2V56h-2v2h2zM2 58V56H0v2h2zM58 58V56h-2v2h2zM4 58V56H2v2h2zM56 58V56h-2v2h2zM18 58V56h-2v2h2zM42 58V56h-2v2h2zM2 26v-2H0v2h2zm56 0v-2h-2v2h2zM2 42v-2H0v2h2zm56 0v-2h-2v2h2zM2 10v-2H0v2h2zm56 0v-2h-2v2h2zM2 18v-2H0v2h2zm56 12v-2h-2v2h2zM2 34v-2H0v2h2zm56 0v-2h-2v2h2zm-4-8v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zM2 26v-2H0v2h2zm56 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
     <!-- Location Detection Overlay -->
-    <div id="location-overlay" class="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-50 p-4">
+    <div id="location-overlay" class="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-50 p-4 transition-opacity duration-500 ease-in-out">
         <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm w-full">
-            <h2 class="text-2xl font-bold text-main-color mb-4">Bem-vindo(a) à Doceria Mineira!</h2>
-            <p id="location-message" class="text-gray-700 text-lg mb-4">Procurando a loja mais próxima...</p>
+            <h2 class="text-3xl font-bold text-main-color mb-4">Bem-vindo(a) à Doceria Mineira!</h2>
+            <p id="location-message" class="text-gray-700 text-xl mb-4">Procurando a loja mais próxima...</p>
             <div id="location-spinner" class="animate-spin rounded-full h-12 w-12 border-4 border-t-4 border-main-color border-opacity-50 mx-auto"></div>
-            <!-- Removido o parágrafo de location-detail para não exibir latitude/longitude -->
         </div>
     </div>
 
     <!-- Header -->
-    <header class="bg-white shadow-md py-4 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
         <div class="flex flex-col items-center mb-4">
-            <!-- Logo principal: Removido rounded-full e shadow-lg para eliminar o efeito bolha -->
-            <img src="https://iili.io/FkNTfjt.png" alt="Logo Doceria Mineira" class="h-24 md:h-32 w-auto object-contain mb-2">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 text-center">Doceria Mineira</h1>
+            <!-- Logo principal: Aumentado significativamente -->
+            <img src="https://iili.io/FkNTfjt.png" alt="Logo Doceria Mineira" class="h-40 md:h-56 w-auto object-contain mb-2">
+            <!-- Título "Doceria Mineira" removido -->
         </div>
-        <nav class="flex flex-wrap justify-center gap-4 mt-4">
-            <a href="#hero" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Início</a>
-            <a href="#products" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Produtos</a>
-            <a href="#morango-do-amor" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Morango do Amor</a>
-            <a href="#about" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Sobre Nós</a>
-            <a href="#contact" class="text-gray-700 hover:text-main-color font-semibold transition duration-300 ease-in-out">Contato</a>
+        <nav class="flex flex-wrap justify-center gap-6 mt-4">
+            <a href="#hero" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Início</a>
+            <a href="#morango-do-amor" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Morango do Amor</a>
+            <a href="#products" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Outros Doces</a>
+            <a href="#about" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Nossa História</a>
+            <a href="#contact" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Contato</a>
         </nav>
     </header>
 
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section id="hero" class="relative bg-gradient-to-r from-pink-300 to-main-color text-white py-20 md:py-32 flex items-center justify-center overflow-hidden rounded-b-3xl shadow-xl">
-            <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://placehold.co/1920x1080/EE318C/ffffff?text=Fundo+Doces');"></div>
-            <div class="relative z-10 text-center px-4">
-                <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-lg">A Doçura de Minas na Sua Casa</h2>
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto drop-shadow-md">
-                    Descubra o sabor autêntico dos doces mineiros, com o toque especial do nosso famoso <span class="font-bold text-yellow-200">Morango do Amor</span>!
+        <section id="hero" class="relative main-color text-white py-24 md:py-40 flex items-center justify-center overflow-hidden rounded-b-3xl shadow-xl hero-pattern">
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h2 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight drop-shadow-lg font-pacifico">O Sabor que Apaixona</h2>
+                <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto drop-shadow-md">
+                    Descubra a magia dos doces mineiros, com o toque irresistível do nosso <span class="font-bold text-yellow-200">Morango do Amor</span>!
                 </p>
-                <a href="#morango-do-amor" class="bg-white text-main-color px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
-                    Experimente o Morango do Amor!
+                <a href="#morango-do-amor" class="bg-white text-main-color px-10 py-5 rounded-full text-xl font-bold hover:bg-gray-100 transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                    Conheça o Morango do Amor
                 </a>
             </div>
         </section>
 
-        <!-- Morango do Amor Spotlight Section -->
-        <section id="morango-do-amor" class="py-16 md:py-24 bg-white px-6 md:px-12">
-            <div class="max-w-6xl mx-auto text-center">
-                <h3 class="text-4xl font-extrabold text-main-color mb-12">Nosso Carro-Chefe: O Morango do Amor!</h3>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-                    <div class="md:w-1/2">
-                        <img src="https://placehold.co/600x400/EE318C/ffffff?text=Morango+do+Amor" alt="Morango do Amor" class="rounded-3xl shadow-2xl w-full h-auto object-cover transform hover:scale-105 transition duration-500 ease-in-out">
+        <!-- Morango do Amor Spotlight Section - Mais Foco e Visual Aprimorado -->
+        <section id="morango-do-amor" class="py-20 md:py-32 bg-white px-6 md:px-12">
+            <div class="max-w-7xl mx-auto text-center">
+                <h3 class="text-5xl font-extrabold text-main-color mb-16 font-pacifico">Morango do Amor: A Nossa Joia!</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-16">
+                    <div class="md:w-1/2 relative group">
+                        <img src="https://placehold.co/700x500/EE318C/ffffff?text=Morango+do+Amor" alt="Morango do Amor" class="rounded-3xl shadow-2xl w-full h-auto object-cover transform group-hover:scale-105 transition duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 rounded-3xl transition-opacity duration-300"></div>
                     </div>
                     <div class="md:w-1/2 text-left">
-                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                            O Morango do Amor é a nossa especialidade, uma verdadeira obra-prima da doçaria mineira.
-                            Morangos frescos e selecionados, cobertos por uma camada crocante de caramelo artesanal,
-                            resultando em uma explosão de sabor e textura a cada mordida.
+                        <p class="text-gray-700 text-xl leading-relaxed mb-8">
+                            Imagine morangos frescos, colhidos com carinho, envoltos em uma fina e crocante camada de caramelo artesanal.
+                            Essa é a experiência do nosso **Morango do Amor**, uma verdadeira paixão mineira!
                         </p>
-                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                            Perfeito para presentear, compartilhar ou simplesmente se deliciar. Uma experiência única
-                            que você só encontra aqui na Doceria Mineira.
+                        <p class="text-gray-700 text-xl leading-relaxed mb-8">
+                            Cada mordida é uma explosão de doçura e frescor, perfeita para celebrar momentos especiais ou simplesmente
+                            para se presentear com um pedacinho do céu. Feito com ingredientes selecionados e muito afeto.
                         </p>
-                        <ul class="list-disc list-inside text-gray-600 text-base mb-6">
-                            <li>Morangos frescos e selecionados</li>
-                            <li>Caramelo crocante e artesanal</li>
-                            <li>Sabor inesquecível</li>
-                            <li>Produzido com amor em Minas Gerais</li>
+                        <ul class="list-disc list-inside text-gray-600 text-lg mb-8 space-y-2">
+                            <li>🍓 Morangos frescos e suculentos</li>
+                            <li>🍯 Caramelo crocante e dourado</li>
+                            <li>💖 Feito com a tradição e o amor de Minas</li>
+                            <li>🎁 Ideal para presentear e surpreender</li>
                         </ul>
-                        <button class="main-color text-white px-6 py-3 rounded-full font-bold hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">
-                            Peça Já o Seu!
+                        <button class="main-color text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-pink-700 transition duration-300 ease-in-out shadow-md transform hover:scale-105">
+                            Quero o Meu Morango do Amor!
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Products Section -->
-        <section id="products" class="py-16 md:py-24 bg-pink-50 px-6 md:px-12">
-            <div class="max-w-6xl mx-auto text-center">
-                <h3 class="text-4xl font-extrabold text-gray-800 mb-12">Outros Produtos Deliciosos</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Products Section - Grid mais atraente -->
+        <section id="products" class="py-20 md:py-32 bg-pink-50 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto text-center">
+                <h3 class="text-5xl font-extrabold text-gray-800 mb-16 font-pacifico">Nossas Delícias Mineiras</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                     <!-- Product Card 1 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x300/EE318C/ffffff?text=Doce+de+Leite" alt="Doce de Leite" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-2">Doce de Leite Cremoso</h4>
-                            <p class="text-gray-600 mb-4">O autêntico doce de leite mineiro, cremoso e irresistível.</p>
-                            <span class="text-main-color text-xl font-bold">R$ 25,00</span>
-                            <button class="main-color text-white px-4 py-2 rounded-full mt-4 w-full font-semibold hover:bg-pink-700 transition duration-300 ease-in-out">Adicionar ao Carrinho</button>
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
+                        <img src="https://placehold.co/500x350/EE318C/ffffff?text=Doce+de+Leite" alt="Doce de Leite" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-8">
+                            <h4 class="text-3xl font-bold text-gray-800 mb-3">Doce de Leite Cremoso</h4>
+                            <p class="text-gray-600 mb-5 text-lg">O autêntico doce de leite mineiro, feito no tacho e com sabor inconfundível. Pura cremosidade!</p>
+                            <span class="text-main-color text-2xl font-bold">R$ 25,00</span>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 2 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x300/EE318C/ffffff?text=Goiabada+Cascão" alt="Goiabada Cascão" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-2">Goiabada Cascão</h4>
-                            <p class="text-gray-600 mb-4">A tradicional goiabada cascão, perfeita com queijo minas.</p>
-                            <span class="text-main-color text-xl font-bold">R$ 20,00</span>
-                            <button class="main-color text-white px-4 py-2 rounded-full mt-4 w-full font-semibold hover:bg-pink-700 transition duration-300 ease-in-out">Adicionar ao Carrinho</button>
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
+                        <img src="https://placehold.co/500x350/EE318C/ffffff?text=Goiabada+Cascão" alt="Goiabada Cascão" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-8">
+                            <h4 class="text-3xl font-bold text-gray-800 mb-3">Goiabada Cascão</h4>
+                            <p class="text-gray-600 mb-5 text-lg">A tradicional goiabada cascão, densa e saborosa. Perfeita para acompanhar um queijo Minas!</p>
+                            <span class="text-main-color text-2xl font-bold">R$ 20,00</span>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 3 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x300/EE318C/ffffff?text=Pé+de+Moleque" alt="Pé de Moleque" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-2">Pé de Moleque</h4>
-                            <p class="text-gray-600 mb-4">Crocrante e saboroso, o clássico pé de moleque.</p>
-                            <span class="text-main-color text-xl font-bold">R$ 15,00</span>
-                            <button class="main-color text-white px-4 py-2 rounded-full mt-4 w-full font-semibold hover:bg-pink-700 transition duration-300 ease-in-out">Adicionar ao Carrinho</button>
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
+                        <img src="https://placehold.co/500x350/EE318C/ffffff?text=Pé+de+Moleque" alt="Pé de Moleque" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-8">
+                            <h4 class="text-3xl font-bold text-gray-800 mb-3">Pé de Moleque Crocante</h4>
+                            <p class="text-gray-600 mb-5 text-lg">O clássico pé de moleque, com amendoim selecionado e o ponto certo de crocância.</p>
+                            <span class="text-main-color text-2xl font-bold">R$ 15,00</span>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 4 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x300/EE318C/ffffff?text=Doce+de+Abóbora" alt="Doce de Abóbora" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-2">Doce de Abóbora com Coco</h4>
-                            <p class="text-gray-600 mb-4">Um doce caseiro que remete à fazenda, com abóbora e coco.</p>
-                            <span class="text-main-color text-xl font-bold">R$ 22,00</span>
-                            <button class="main-color text-white px-4 py-2 rounded-full mt-4 w-full font-semibold hover:bg-pink-700 transition duration-300 ease-in-out">Adicionar ao Carrinho</button>
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
+                        <img src="https://placehold.co/500x350/EE318C/ffffff?text=Doce+de+Abóbora" alt="Doce de Abóbora" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-8">
+                            <h4 class="text-3xl font-bold text-gray-800 mb-3">Doce de Abóbora com Coco</h4>
+                            <p class="text-gray-600 mb-5 text-lg">Um doce caseiro que remete à fazenda, com abóbora fresca e coco ralado. Sabor da vovó!</p>
+                            <span class="text-main-color text-2xl font-bold">R$ 22,00</span>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 5 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x300/EE318C/ffffff?text=Paçoca" alt="Paçoca" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-2">Paçoca Caseira</h4>
-                            <p class="text-gray-600 mb-4">A paçoca mais saborosa e fresquinha, feita com amendoim selecionado.</p>
-                            <span class="text-main-color text-xl font-bold">R$ 12,00</span>
-                            <button class="main-color text-white px-4 py-2 rounded-full mt-4 w-full font-semibold hover:bg-pink-700 transition duration-300 ease-in-out">Adicionar ao Carrinho</button>
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
+                        <img src="https://placehold.co/500x350/EE318C/ffffff?text=Paçoca" alt="Paçoca" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-8">
+                            <h4 class="text-3xl font-bold text-gray-800 mb-3">Paçoca Rolha Caseira</h4>
+                            <p class="text-gray-600 mb-5 text-lg">A paçoca mais saborosa e fresquinha, feita com amendoim torrado e moído na medida certa.</p>
+                            <span class="text-main-color text-2xl font-bold">R$ 12,00</span>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 6 -->
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                        <img src="https://placehold.co/400x300/EE318C/ffffff?text=Ambrosia" alt="Ambrosia" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-2">Ambrosia Mineira</h4>
-                            <p class="text-gray-600 mb-4">Um clássico da culinária mineira, com ovos e leite.</p>
-                            <span class="text-main-color text-xl font-bold">R$ 28,00</span>
-                            <button class="main-color text-white px-4 py-2 rounded-full mt-4 w-full font-semibold hover:bg-pink-700 transition duration-300 ease-in-out">Adicionar ao Carrinho</button>
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
+                        <img src="https://placehold.co/500x350/EE318C/ffffff?text=Ambrosia" alt="Ambrosia" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity duration-300">
+                        <div class="p-8">
+                            <h4 class="text-3xl font-bold text-gray-800 mb-3">Ambrosia Tradicional</h4>
+                            <p class="text-gray-600 mb-5 text-lg">Um clássico da culinária mineira, com ovos, leite e um toque de canela. Leve e deliciosa!</p>
+                            <span class="text-main-color text-2xl font-bold">R$ 28,00</span>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                 </div>
@@ -183,23 +196,23 @@
         </section>
 
         <!-- About Us Section -->
-        <section id="about" class="py-16 md:py-24 bg-white px-6 md:px-12">
-            <div class="max-w-6xl mx-auto text-center">
-                <h3 class="text-4xl font-extrabold text-main-color mb-12">Nossa História</h3>
-                <div class="flex flex-col md:flex-row items-center gap-12">
+        <section id="about" class="py-20 md:py-32 bg-white px-6 md:px-12">
+            <div class="max-w-7xl mx-auto text-center">
+                <h3 class="text-5xl font-extrabold text-main-color mb-16 font-pacifico">Nossa História de Doçura</h3>
+                <div class="flex flex-col md:flex-row items-center gap-16">
                     <div class="md:w-1/2">
-                        <img src="https://placehold.co/600x400/EE318C/ffffff?text=Fazenda+Mineira" alt="Fazenda Mineira" class="rounded-3xl shadow-xl w-full h-auto object-cover">
+                        <img src="https://placehold.co/700x500/EE318C/ffffff?text=Fazenda+Mineira" alt="Fazenda Mineira" class="rounded-3xl shadow-xl w-full h-auto object-cover">
                     </div>
                     <div class="md:w-1/2 text-left">
-                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                            A Doceria Mineira nasceu do amor pela tradição e pelos sabores autênticos de Minas Gerais.
-                            Nossa família, com raízes profundas na culinária mineira, decidiu compartilhar a paixão
-                            pelos doces caseiros com o mundo.
+                        <p class="text-gray-700 text-xl leading-relaxed mb-8">
+                            A Doceria Mineira é mais que uma loja, é a concretização de um sonho familiar de compartilhar
+                            os sabores autênticos e as tradições de Minas Gerais. Nossas receitas, passadas de geração em geração,
+                            são o coração do nosso trabalho.
                         </p>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Cada doce é feito com ingredientes frescos, selecionados e muito carinho, seguindo receitas
-                            passadas de geração em geração. Nosso compromisso é levar a você uma experiência de sabor
-                            que resgata as memórias mais doces da infância.
+                        <p class="text-gray-700 text-xl leading-relaxed">
+                            Cada doce é feito com ingredientes frescos, selecionados com rigor e, acima de tudo, muito carinho.
+                            Nosso compromisso é levar até você não apenas um doce, mas uma experiência que resgata as memórias
+                            mais doces e afetuosas da sua infância. Venha se deliciar conosco!
                         </p>
                     </div>
                 </div>
@@ -207,27 +220,28 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 md:py-24 bg-pink-50 px-6 md:px-12">
-            <div class="max-w-4xl mx-auto text-center">
-                <h3 class="text-4xl font-extrabold text-gray-800 mb-12">Fale Conosco</h3>
-                <p class="text-gray-700 text-lg mb-8">
-                    Tem alguma dúvida, sugestão ou quer fazer um pedido especial? Entre em contato conosco!
+        <section id="contact" class="py-20 md:py-32 bg-pink-50 px-6 md:px-12">
+            <div class="max-w-5xl mx-auto text-center">
+                <h3 class="text-5xl font-extrabold text-gray-800 mb-16 font-pacifico">Fale Conosco</h3>
+                <p class="text-gray-700 text-xl mb-10">
+                    Tem alguma dúvida, sugestão, ou quer fazer um pedido especial para um evento?
+                    Estamos aqui para te atender com carinho!
                 </p>
-                <form class="bg-white p-8 rounded-2xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form class="bg-white p-10 rounded-3xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="col-span-1">
-                        <label for="name" class="block text-left text-gray-700 text-sm font-bold mb-2">Nome:</label>
-                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-main-color focus:border-transparent transition duration-200" placeholder="Seu nome completo">
+                        <label for="name" class="block text-left text-gray-700 text-lg font-bold mb-3">Seu Nome:</label>
+                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-main-color focus:border-transparent transition duration-200" placeholder="Nome completo">
                     </div>
                     <div class="col-span-1">
-                        <label for="email" class="block text-left text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-main-color focus:border-transparent transition duration-200" placeholder="seu.email@exemplo.com">
+                        <label for="email" class="block text-left text-gray-700 text-lg font-bold mb-3">Seu Email:</label>
+                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-main-color focus:border-transparent transition duration-200" placeholder="seu.email@exemplo.com">
                     </div>
                     <div class="col-span-2">
-                        <label for="message" class="block text-left text-gray-700 text-sm font-bold mb-2">Mensagem:</label>
-                        <textarea id="message" name="message" rows="6" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-main-color focus:border-transparent transition duration-200" placeholder="Sua mensagem..."></textarea>
+                        <label for="message" class="block text-left text-gray-700 text-lg font-bold mb-3">Sua Mensagem:</label>
+                        <textarea id="message" name="message" rows="7" class="shadow-sm appearance-none border border-gray-300 rounded-lg w-full py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-main-color focus:border-transparent transition duration-200" placeholder="Escreva sua mensagem aqui..."></textarea>
                     </div>
                     <div class="col-span-2 text-center">
-                        <button type="submit" class="main-color text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                        <button type="submit" class="main-color text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-pink-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
                             Enviar Mensagem
                         </button>
                     </div>
@@ -237,9 +251,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="main-color text-white py-8 px-6 md:px-12 text-center rounded-t-3xl shadow-inner mt-8">
-        <p class="mb-4">&copy; 2025 Doceria Mineira. Todos os direitos reservados.</p>
-        <div class="flex justify-center space-x-6">
+    <footer class="main-color text-white py-10 px-6 md:px-12 text-center rounded-t-3xl shadow-inner mt-12">
+        <p class="mb-5 text-lg">&copy; 2025 Doceria Mineira. Todos os direitos reservados.</p>
+        <div class="flex justify-center space-x-8 text-lg">
             <a href="#" class="hover:text-gray-200 transition duration-300 ease-in-out">Política de Privacidade</a>
             <a href="#" class="hover:text-gray-200 transition duration-300 ease-in-out">Termos de Serviço</a>
         </div>
@@ -273,8 +287,11 @@
                     (position) => {
                         // Success callback
                         setTimeout(() => {
-                            // Simulando a detecção da cidade com uma mensagem genérica
-                            showMessageAndHideSpinner('Loja mais próxima em sua região - 2 km');
+                            // SIMULAÇÃO: Para obter o nome real da cidade, você precisaria de uma API de geocodificação reversa (ex: Google Maps Geocoding API)
+                            // e um backend para chamá-la de forma segura.
+                            // Aqui, estamos apenas simulando um nome de cidade para demonstração.
+                            const simulatedCity = "Lavras"; // Exemplo: Usando a cidade de Lavras, MG, como simulação
+                            showMessageAndHideSpinner(`Loja mais próxima em ${simulatedCity} - 2 km`);
                         }, 3000); // Simulate 3 seconds search time
                     },
                     (error) => {
