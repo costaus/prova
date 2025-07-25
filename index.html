@@ -6,7 +6,7 @@
     <title>Doceria Mineira - Morango do Amor</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Pacifico&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -24,9 +24,6 @@
         }
         .font-pacifico {
             font-family: 'Pacifico', cursive;
-        }
-        .font-dancing-script {
-            font-family: 'Dancing Script', cursive;
         }
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
@@ -85,29 +82,16 @@
         .location-overlay-exit .overlay-content {
             animation: fadeOutScaleDown 0.7s ease-in forwards;
         }
-
-        /* Pulsating heart for loading */
-        @keyframes pulseHeart {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .heart-pulse {
-            animation: pulseHeart 1.5s infinite ease-in-out;
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
     <!-- Location Detection Overlay - Aprimorado -->
     <div id="location-overlay" class="fixed inset-0 bg-gradient-to-br from-pink-200 to-main-color flex items-center justify-center z-50 p-4 location-overlay-enter">
-        <div class="bg-white p-10 rounded-2xl shadow-2xl text-center max-w-md w-full relative overflow-hidden overlay-content">
-            <!-- Coração animado -->
-            <div class="absolute -top-8 -right-8 text-main-color opacity-20 text-9xl heart-pulse">💖</div>
-            <div class="absolute -bottom-8 -left-8 text-main-color opacity-20 text-9xl heart-pulse" style="animation-delay: 0.5s;">🍓</div>
-
-            <h2 class="text-4xl font-dancing-script text-main-color mb-6 drop-shadow-sm">Bem-vindo(a) à Doçura!</h2>
+        <div class="bg-white p-8 rounded-2xl shadow-2xl text-center max-w-md w-full relative overflow-hidden overlay-content">
+            <!-- Emojis removidos para otimizar espaço -->
+            <!-- Fonte do título ajustada para Inter Bold -->
+            <h2 class="text-4xl font-extrabold text-main-color mb-6 drop-shadow-sm">Bem-vindo(a) à Doçura!</h2>
             <p id="location-message" class="text-gray-700 text-xl mb-6">Procurando a loja mais próxima para você...</p>
             <div id="location-spinner" class="animate-spin rounded-full h-16 w-16 border-4 border-t-4 border-main-color border-opacity-50 mx-auto mb-6"></div>
             <p class="text-gray-500 text-sm">Aguarde um instante enquanto encontramos o melhor para você.</p>
@@ -115,12 +99,12 @@
     </div>
 
     <!-- Header -->
-    <header class="bg-white shadow-lg py-2 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
+    <header class="bg-white shadow-lg py-1 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
         <div class="flex flex-col items-center">
-            <!-- Nova URL da Logo e tamanho ajustado -->
-            <img src="https://iili.io/FkOukn1.png" alt="Logo Doceria Mineira" class="h-56 md:h-72 w-auto object-contain">
+            <!-- Nova URL da Logo e tamanho ajustado para ocupar menos espaço no topo -->
+            <img src="https://iili.io/FkOukn1.png" alt="Logo Doceria Mineira" class="h-40 md:h-56 w-auto object-contain">
         </div>
-        <nav class="flex flex-wrap justify-center gap-6 mt-2">
+        <nav class="flex flex-wrap justify-center gap-6 mt-1"> <!-- Ajustado mt para diminuir o espaço -->
             <a href="#hero" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Início</a>
             <a href="#morango-do-amor" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Morango do Amor</a>
             <a href="#products" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Outros Doces</a>
