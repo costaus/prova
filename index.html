@@ -51,13 +51,44 @@
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 2v-2h-2v2h2zm0 56v-2H0v2h2zM58 2v-2h-2v2h2zm0 56v-2h-2v2h2zM4 2v-2H2v2h2zm0 56v-2H2v2h2zM56 2v-2h-2v2h2zm0 56v-2h-2v2h2zM18 2v-2h-2v2h2zm0 56v-2h-2v2h2zM42 2v-2h-2v2h2zm0 56v-2h-2v2h2zm16-2V56h-2v2h2zM2 58V56H0v2h2zM58 58V56h-2v2h2zM4 58V56H2v2h2zM56 58V56h-2v2h2zM18 58V56h-2v2h2zM42 58V56h-2v2h2zM2 26v-2H0v2h2zm56 0v-2h-2v2h2zM2 42v-2H0v2h2zm56 0v-2h-2v2h2zM2 10v-2H0v2h2zm56 0v-2h-2v2h2zM2 18v-2H0v2h2zm56 12v-2h-2v2h2zM2 34v-2H0v2h2zm56 0v-2h-2v2h2zm-4-8v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zM2 26v-2H0v2h2zm56 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2zm-4 0v-2h-2v2h2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             background-size: 60px 60px;
         }
+
+        /* Animation for location overlay */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeOutScale {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+
+        .location-overlay-enter {
+            animation: fadeInScale 0.5s ease-out forwards;
+        }
+
+        .location-overlay-exit {
+            animation: fadeOutScale 0.5s ease-in forwards;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
     <!-- Location Detection Overlay -->
-    <div id="location-overlay" class="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-50 p-4 transition-opacity duration-500 ease-in-out">
-        <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm w-full">
+    <div id="location-overlay" class="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-50 p-4">
+        <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm w-full location-overlay-enter">
             <h2 class="text-3xl font-bold text-main-color mb-4">Bem-vindo(a) à Doceria Mineira!</h2>
             <p id="location-message" class="text-gray-700 text-xl mb-4">Procurando a loja mais próxima...</p>
             <div id="location-spinner" class="animate-spin rounded-full h-12 w-12 border-4 border-t-4 border-main-color border-opacity-50 mx-auto"></div>
@@ -65,17 +96,15 @@
     </div>
 
     <!-- Header -->
-    <header class="bg-white shadow-lg py-4 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
-        <div class="flex flex-col items-center mb-2"> <!-- Ajustado mb para diminuir espaço -->
-            <!-- Logo principal: Aumentado significativamente -->
-            <img src="https://iili.io/FkNTfjt.png" alt="Logo Doceria Mineira" class="h-40 md:h-56 w-auto object-contain">
-            <!-- Título "Doceria Mineira" removido -->
+    <header class="bg-white shadow-lg py-2 px-6 md:px-12 flex flex-col items-center justify-center sticky top-0 z-40">
+        <div class="flex flex-col items-center"> <!-- Removido mb para diminuir o espaço -->
+            <!-- Logo principal: Aumentado significativamente e sem margem inferior -->
+            <img src="https://iili.io/FkNTfjt.png" alt="Logo Doceria Mineira" class="h-48 md:h-64 w-auto object-contain">
         </div>
-        <nav class="flex flex-wrap justify-center gap-6 mt-4">
+        <nav class="flex flex-wrap justify-center gap-6 mt-2"> <!-- Ajustado mt para diminuir o espaço -->
             <a href="#hero" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Início</a>
             <a href="#morango-do-amor" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Morango do Amor</a>
             <a href="#products" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Outros Doces</a>
-            <!-- Removido "Nossa História" e "Contato" para simplificar -->
             <a href="#contact" class="text-gray-700 hover:text-main-color font-semibold text-lg transition duration-300 ease-in-out">Contato</a>
         </nav>
     </header>
@@ -118,7 +147,7 @@
                             <li>💖 Feito com a tradição e o amor de Minas</li>
                             <li>🎁 Ideal para presentear e surpreender</li>
                         </ul>
-                        <button class="main-color text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-pink-700 transition duration-300 ease-in-out shadow-md transform hover:scale-105">
+                        <button class="main-color text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">
                             Quero o Meu Morango do Amor!
                         </button>
                     </div>
@@ -126,10 +155,11 @@
             </div>
         </section>
 
-        <!-- Products Section - Grid mais atraente -->
+        <!-- Products Section - Grid com 2 produtos por linha em telas menores -->
         <section id="products" class="py-20 md:py-32 bg-pink-50 px-6 md:px-12">
             <div class="max-w-7xl mx-auto text-center">
                 <h3 class="text-5xl font-extrabold text-gray-800 mb-16 font-pacifico">Nossas Delícias Mineiras</h3>
+                <!-- Alterado para grid-cols-1 por padrão, sm:grid-cols-2 e lg:grid-cols-3 -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                     <!-- Product Card 1 -->
                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out group">
@@ -138,7 +168,7 @@
                             <h4 class="text-3xl font-bold text-gray-800 mb-3">Doce de Leite Cremoso</h4>
                             <p class="text-gray-600 mb-5 text-lg">O autêntico doce de leite mineiro, feito no tacho e com sabor inconfundível. Pura cremosidade!</p>
                             <span class="text-main-color text-2xl font-bold">R$ 25,00</span>
-                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 2 -->
@@ -148,7 +178,7 @@
                             <h4 class="text-3xl font-bold text-gray-800 mb-3">Goiabada Cascão</h4>
                             <p class="text-gray-600 mb-5 text-lg">A tradicional goiabada cascão, densa e saborosa. Perfeita para acompanhar um queijo Minas!</p>
                             <span class="text-main-color text-2xl font-bold">R$ 20,00</span>
-                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 3 -->
@@ -158,7 +188,7 @@
                             <h4 class="text-3xl font-bold text-gray-800 mb-3">Pé de Moleque Crocante</h4>
                             <p class="text-gray-600 mb-5 text-lg">O clássico pé de moleque, com amendoim selecionado e o ponto certo de crocância.</p>
                             <span class="text-main-color text-2xl font-bold">R$ 15,00</span>
-                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 4 -->
@@ -168,7 +198,7 @@
                             <h4 class="text-3xl font-bold text-gray-800 mb-3">Doce de Abóbora com Coco</h4>
                             <p class="text-gray-600 mb-5 text-lg">Um doce caseiro que remete à fazenda, com abóbora fresca e coco ralado. Sabor da vovó!</p>
                             <span class="text-main-color text-2xl font-bold">R$ 22,00</span>
-                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 5 -->
@@ -178,7 +208,7 @@
                             <h4 class="text-3xl font-bold text-gray-800 mb-3">Paçoca Rolha Caseira</h4>
                             <p class="text-gray-600 mb-5 text-lg">A paçoca mais saborosa e fresquinha, feita com amendoim torrado e moído na medida certa.</p>
                             <span class="text-main-color text-2xl font-bold">R$ 12,00</span>
-                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                     <!-- Product Card 6 -->
@@ -188,7 +218,7 @@
                             <h4 class="text-3xl font-bold text-gray-800 mb-3">Ambrosia Tradicional</h4>
                             <p class="text-gray-600 mb-5 text-lg">Um clássico da culinária mineira, com ovos, leite e um toque de canela. Leve e deliciosa!</p>
                             <span class="text-main-color text-2xl font-bold">R$ 28,00</span>
-                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md">Adicionar ao Carrinho</button>
+                            <button class="main-color text-white px-6 py-3 rounded-full mt-6 w-full font-semibold text-lg hover:bg-pink-700 transition duration-300 ease-in-out shadow-md" onclick="addToCart(this)">Adicionar ao Carrinho</button>
                         </div>
                     </div>
                 </div>
@@ -264,13 +294,15 @@
             const locationOverlay = document.getElementById('location-overlay');
             const locationMessage = document.getElementById('location-message');
             const locationSpinner = document.getElementById('location-spinner');
+            const overlayContent = locationOverlay.querySelector('div'); // Get the inner div for animation
 
             // Function to hide the overlay with a fade-out effect
             const hideOverlay = () => {
-                locationOverlay.classList.add('opacity-0', 'pointer-events-none');
+                overlayContent.classList.remove('location-overlay-enter');
+                overlayContent.classList.add('location-overlay-exit');
                 setTimeout(() => {
                     locationOverlay.style.display = 'none';
-                }, 500); // Matches the transition duration in CSS
+                }, 500); // Matches the animation duration
             };
 
             // Function to show a message and hide the spinner
@@ -329,6 +361,20 @@
                 }, 3000); // Simulate 3 seconds search time
             }
         });
+
+        // Add to Cart Animation Function
+        function addToCart(button) {
+            const originalText = button.textContent;
+            button.textContent = "Adicionado!";
+            button.classList.add('animate-pulse', 'bg-green-500'); // Add a pulse animation and change color
+            button.classList.remove('hover:bg-pink-700'); // Remove hover effect temporarily
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('animate-pulse', 'bg-green-500');
+                button.classList.add('hover:bg-pink-700'); // Restore original hover effect
+            }, 1500); // Revert after 1.5 seconds
+        }
     </script>
 </body>
 </html>
